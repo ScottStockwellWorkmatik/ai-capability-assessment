@@ -8,7 +8,7 @@ Live address (after GitHub Pages is switched on): https://scottstockwellworkmati
 
 ```
 index.html            The page
-og-image-1200.png     LinkedIn and social preview image (1200 x 630)
+og-image-sharp.png     LinkedIn and social preview image (1200 x 630)
 favicon files         favicon.ico, favicon.svg, favicon-96x96.png, apple-touch-icon.png, web-app-manifest-*.png, site.webmanifest
 .nojekyll             Tells GitHub Pages to serve the files as they are
 assets/               logo-black.svg (used in the header), logo-white.svg (spare)
