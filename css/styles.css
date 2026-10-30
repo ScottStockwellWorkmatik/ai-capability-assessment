@@ -235,3 +235,6 @@ td.chg.down-bad, .ph.down-bad { color: #B42318; }
 .movers .start-item > span:nth-child(2) { flex: 1; min-width: 0; }
 .movers .start-item .ph { white-space: nowrap; }
 #cmpCats td:first-child { min-width: 190px; }
+.lvl { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+.lvl b { min-height: 0; }
+.lvl span { text-align: left; }
