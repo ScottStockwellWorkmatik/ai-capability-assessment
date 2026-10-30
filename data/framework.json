@@ -1,0 +1,946 @@
+{
+ "version": "1.0.0",
+ "date": "30 October 2026",
+ "categories": [
+  "Strategy, Leadership and Value",
+  "Workflows",
+  "Operating Model and Ecosystem",
+  "People and Skills",
+  "Data and Technology",
+  "Governance and Risk",
+  "Culture and Change"
+ ],
+ "scale": [
+  {
+   "level": 1,
+   "name": "Not prepared",
+   "desc": "No awareness or coordinated activity; any AI use is ad hoc and individual."
+  },
+  {
+   "level": 2,
+   "name": "Aware",
+   "desc": "The need is recognised and there are isolated experiments, but no plan, owner or standard."
+  },
+  {
+   "level": 3,
+   "name": "Developing",
+   "desc": "Plans, owners and pilots are defined; practice is inconsistent across the team."
+  },
+  {
+   "level": 4,
+   "name": "Established",
+   "desc": "Practice is embedded, measured and repeatable across the function."
+  },
+  {
+   "level": 5,
+   "name": "Transformation ready",
+   "desc": "Practice is optimised and continuously improved; AI shapes how the function works and competes."
+  }
+ ],
+ "thresholds": {
+  "uneven": 1.5,
+  "critical": 2
+ },
+ "phases": [
+  "Direct",
+  "Organise",
+  "Build",
+  "Scale",
+  "Sustain"
+ ],
+ "capabilities": [
+  {
+   "id": "S1",
+   "cat": 0,
+   "name": "AI vision with transformative growth and innovation ambition",
+   "critical": true,
+   "activity": "Set a transformative AI ambition for marketing until it is agreed and owned at the top",
+   "definition": "A clear statement of what AI should change for the marketing function and the wider business, covering growth and innovation as well as efficiency.",
+   "question": "How clearly have marketing leaders defined what AI should change for the business, beyond saving time and cost?",
+   "outcome": "Marketing has an agreed AI ambition, covering growth and innovation as well as efficiency, that supports the business strategy and that leaders can state consistently.",
+   "evidence": "A written AI ambition statement, approved by the senior team, that names growth or innovation goals; leaders describe it consistently when asked.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are more likely to pursue growth and innovation alongside efficiency and to expect enterprise-wide transformative change; they are 3.3 times more likely to plan to transform their business within three years (2026, p.18 and Exhibits 10–11).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "No AI ambition for marketing has been discussed or written down.",
+    "Leaders talk about AI mainly as a way to save time or cost; ambition is informal and varies by person.",
+    "A draft AI ambition exists but is not yet approved, or covers efficiency only; leaders describe it differently.",
+    "A written AI ambition statement, approved by the senior team, names growth or innovation goals; leaders describe it consistently when asked.",
+    "The ambition is reviewed on a set cadence, is known across the wider business and visibly supports the business strategy."
+   ],
+   "phase": 0,
+   "lane": "L"
+  },
+  {
+   "id": "S2",
+   "cat": 0,
+   "name": "Priority domains and use-case portfolio",
+   "critical": false,
+   "activity": "Choose and prioritise AI use cases until a funded portfolio guides the work",
+   "definition": "A prioritised set of marketing domains and use cases chosen for business value and feasibility, managed as a portfolio rather than a list of isolated experiments.",
+   "question": "How do you decide which marketing activities to apply AI to first, and how often are those choices reviewed?",
+   "outcome": "A prioritised, funded portfolio of AI use cases (specific tasks where AI is applied; see the README glossary) is in place, chosen for business value and feasibility, and used to decide what to start, scale or stop.",
+   "evidence": "A use-case portfolio with scoring criteria, owners and status, reviewed on a set cadence.",
+   "evLevel": "Framework-supported",
+   "evBasis": "McKinsey commentary favours prioritising the domains with greatest potential and pursuing end-to-end solutions over piecemeal use cases (2025, pp.7 and 10). Gartner's maturity model includes an AI use-case and product portfolio pillar.",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value",
+    "Gartner AI Maturity Model (abstract) — Gartner, November 2024 — https://www.gartner.com/en/documents/5937907"
+   ],
+   "levels": [
+    "There is no list of AI use cases; people try tools independently.",
+    "Use cases are collected informally, with no criteria or owner.",
+    "A use-case list exists with some scoring, but it is not funded or reviewed regularly.",
+    "A use-case portfolio with scoring criteria, owners and status is reviewed on a set cadence.",
+    "The portfolio steers funding and resourcing across the function, is rebalanced against results, and feeds the wider business's AI portfolio."
+   ],
+   "phase": 1,
+   "lane": "L"
+  },
+  {
+   "id": "S3",
+   "cat": 0,
+   "name": "Impact tracking: KPIs and business-level value",
+   "critical": true,
+   "activity": "Track AI impact against business KPIs until value is reported routinely",
+   "definition": "Defined processes to measure AI's effect on business outcomes (revenue, pipeline, cost, quality), not just usage or individual time saved.",
+   "question": "How does your team quantify the business impact of its AI initiatives?",
+   "outcome": "AI's effect on business outcomes (revenue, pipeline, cost, quality) is measured and reported routinely, so leaders can say what AI has delivered beyond usage or time saved.",
+   "evidence": "KPIs measured consistently across functional areas, covering both activities and outcomes, reviewed by leadership at least quarterly; at the highest level, a dashboard linking outcomes to business impact and the business strategy.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are about twice as likely to have defined processes to quantify AI impact (2026, p.19, Exhibit 11). In 2025, tracking well-defined KPIs had the strongest link to bottom-line impact of 12 adoption practices tested (p.8), yet fewer than one in five organisations did it (p.9).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "No one measures what AI delivers.",
+    "Usage or time saved is counted occasionally; there is no link to business outcomes.",
+    "KPIs are defined for some initiatives, but reporting is irregular and mostly about activity.",
+    "KPIs are measured consistently across functional areas, reflect both activities and outcomes, and are reviewed by leadership at least quarterly.",
+    "A dashboard links outcomes to business impact (revenue, pipeline, cost, quality) in support of the business strategy set out in S1, informs funding decisions, and is reported to the wider business."
+   ],
+   "phase": 2,
+   "lane": "L"
+  },
+  {
+   "id": "S4",
+   "cat": 0,
+   "name": "Executive sponsorship and visible role-modelling",
+   "critical": true,
+   "activity": "Sponsor and role-model AI use until leaders visibly use and champion it",
+   "definition": "Senior marketing and business leaders visibly own AI initiatives, use AI themselves, and keep funding and attention when priorities compete.",
+   "question": "How visibly do senior leaders own and use AI, and how do they keep backing it when priorities compete?",
+   "outcome": "Senior leaders visibly own and use AI, and AI initiatives keep funding and attention when priorities compete.",
+   "evidence": "One or more named executive sponsors for AI; leaders' own AI use is observable; the AI budget is reviewed transparently.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are about twice as likely to say senior leaders demonstrate commitment to AI initiatives (2026, p.19, Exhibit 11). In 2025, CEO oversight of AI governance was the element most correlated with EBIT impact (p.2).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "No senior leader sponsors or uses AI in marketing.",
+    "Individual leaders show interest, but there is no named sponsor and little visible use.",
+    "A senior leader supports some pilots, but no executive sponsor is formally named; leaders' own use is limited and funding is not protected.",
+    "One or more executive sponsors are named; leaders' own AI use is observable; the AI budget is reviewed transparently.",
+    "AI is embedded across the Leadership Team: leaders routinely demonstrate AI use and share what they have learned."
+   ],
+   "phase": 0,
+   "lane": "L"
+  },
+  {
+   "id": "S5",
+   "cat": 0,
+   "name": "AI investment commitment and cost management",
+   "critical": false,
+   "activity": "Commit and manage the AI budget until investment and cost are controlled",
+   "definition": "Committed funding for AI, with active management of operating costs (tokens, compute, licences) against the value delivered.",
+   "question": "How is AI funded in marketing, and how do you track and manage its running costs against the value it delivers?",
+   "outcome": "AI has committed funding, and operating costs (tokens, compute, licences) are controlled and weighed against the value delivered.",
+   "evidence": "An approved AI budget; cost per tool or workflow tracked against value delivered; a regular cost review.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are more than twice as likely to spend over 15% of their ICT budget on AI (2026, p.19) and appear more likely to manage AI costs actively (Exhibit 11). One in five respondents say operating costs constrain their AI use (Exhibit 8, p.15).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "No budget is set aside for AI; spending is personal or hidden in other lines.",
+    "Small amounts are spent on licences or trials, with no plan and no cost tracking.",
+    "A budget is allocated for some AI work, but cost per tool or workflow is not tracked against value.",
+    "An approved AI budget is in place; cost per tool or workflow is tracked against value delivered; a regular cost review takes place.",
+    "Investment is adjusted from cost-to-value evidence, with forward budgeting for usage growth and investment aligned to the business strategy."
+   ],
+   "phase": 1,
+   "lane": "L"
+  },
+  {
+   "id": "W1",
+   "cat": 1,
+   "name": "Workflow mapping and prioritisation",
+   "critical": false,
+   "activity": "Map and prioritise workflows until the highest-value ones are chosen for redesign",
+   "definition": "Core marketing workflows (for example campaign planning, content production, reporting, lead handling) are documented end to end and prioritised for AI-enabled redesign.",
+   "question": "How well are your key marketing workflows documented, and how do you choose which to redesign first?",
+   "outcome": "Core marketing workflows are documented end to end, and the ones to redesign first are chosen on agreed criteria.",
+   "evidence": "Documented end-to-end maps of core workflows, with a ranked list and the prioritisation criteria.",
+   "evLevel": "Proposed (author judgement)",
+   "evBasis": "No direct source. Included as a precondition for end-to-end redesign (W2); not separately tested in the McKinsey surveys.",
+   "sources": [],
+   "levels": [
+    "Workflows are not documented; no one has considered which suit AI.",
+    "A few workflows are described informally; choices about where to use AI are ad hoc.",
+    "Several core workflows are mapped and a candidate list exists, but criteria are not agreed.",
+    "Documented end-to-end maps of core workflows exist, with a ranked list and the prioritisation criteria.",
+    "Maps are kept up to date, re-ranked as AI capability and results change, and used to plan redesign across the function."
+   ],
+   "phase": 1,
+   "lane": "M"
+  },
+  {
+   "id": "W2",
+   "cat": 1,
+   "name": "End-to-end redesign and embedding",
+   "critical": true,
+   "activity": "Redesign workflows end to end until the new way of working is embedded",
+   "definition": "Workflows are rebuilt around AI, removing steps, handovers and approvals, and AI is built into how work is done rather than used alongside it.",
+   "question": "To what extent have you fundamentally redesigned workflows around AI, rather than adding AI to existing steps?",
+   "outcome": "Priority workflows have been reviewed and redesigned to be fit for purpose (or retired) before AI is applied, with steps, handovers and approvals removed, and the new way of working is the standard way of working.",
+   "evidence": "Records that workflows were reviewed before AI was applied (redesigned or retired); before and after workflow maps showing steps, handovers or approvals removed; the old process retired; teams working the new way by default.",
+   "evLevel": "Survey-tested",
+   "evBasis": "Nearly three-quarters of high performers fundamentally redesigned workflows because of AI, against about one-quarter of others (2026, p.18). In 2025, workflow redesign had the biggest effect on EBIT impact of 25 attributes tested (p.2).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "AI is not used in workflows, or only on individuals' own initiative.",
+    "AI is added to existing steps to speed up tasks; the workflow itself is unchanged.",
+    "AI best practices are established and applied to existing workflows.",
+    "Workflows are reviewed before AI is applied: each is redesigned to be fit for purpose, or retired, and AI is then applied. Before and after maps show steps, handovers or approvals removed, and teams work the new way by default.",
+    "Redesign is routine across priority workflows, each redesign is measured, and new ways of working are shared with other teams."
+   ],
+   "phase": 2,
+   "lane": "M"
+  },
+  {
+   "id": "W3",
+   "cat": 1,
+   "name": "Human-in-the-loop design",
+   "critical": false,
+   "activity": "Design human review points until people check AI output where it matters",
+   "definition": "Defined points where people validate AI outputs, set by the risk and importance of the output (for example customer-facing content, claims, data).",
+   "question": "How have you decided when and how AI outputs need human review before they are used?",
+   "outcome": "People check AI outputs at defined points, set by the risk and importance of each output, and those checks happen in practice.",
+   "evidence": "A review-point map by output type and risk level; review logs or sampled records show the checks happen.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are more likely to have determined how and when model outputs need a human in the loop (2026, p.19, Exhibit 11; figures read from the chart, so approximate).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "AI outputs are used without any defined check.",
+    "People review AI outputs when they remember to; there is no rule about which outputs need checking.",
+    "Review rules exist for some outputs (for example customer-facing content) but are not consistently applied.",
+    "A review-point map by output type and risk level exists, and review logs or sampled records show the checks happen.",
+    "Review points are tuned using error and incident data, with checks relaxed or tightened as risk evidence changes."
+   ],
+   "phase": 2,
+   "lane": "M"
+  },
+  {
+   "id": "W4",
+   "cat": 1,
+   "name": "Feedback, scaling and reuse of proven workflows",
+   "critical": false,
+   "activity": "Capture and reuse proven workflows until they scale across teams",
+   "definition": "Mechanisms to feed performance back into AI workflows, and to package, reuse and scale proven workflows across teams and regions.",
+   "question": "How do you capture feedback on how AI workflows perform, and spread what works to other teams?",
+   "outcome": "Performance feedback improves AI workflows, and proven workflows are reused and scaled across teams and regions.",
+   "evidence": "A workflow library or playbook with versions; performance data feeding changes; at least one workflow reused in another team or region.",
+   "evLevel": "Framework-supported",
+   "evBasis": "A mechanism to incorporate feedback on gen AI performance was one of 12 adoption and scaling practices tested in 2025 (p.8); McKinsey commentary stresses reusable infrastructure rather than use-case-by-use-case builds (p.7).",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "Results from AI workflows are not captured, and no one reuses them.",
+    "Individuals share tips and prompts informally.",
+    "A shared library of prompts or workflows exists, but few teams use it and feedback is not collected.",
+    "A workflow library or playbook is version-controlled; performance data feeds changes; at least one workflow has been reused in another team or region.",
+    "Proven workflows are scaled by default across teams and regions, feedback loops update them automatically, and contributions are rewarded."
+   ],
+   "phase": 3,
+   "lane": "M"
+  },
+  {
+   "id": "W5",
+   "cat": 1,
+   "name": "Agentic and automation orchestration",
+   "critical": false,
+   "activity": "Orchestrate agents and automation until they run reliably within set limits",
+   "definition": "The ability to design, run and supervise AI agents and automations that carry out multi-step marketing tasks within defined limits.",
+   "question": "How far do you use AI agents or automations to run multi-step marketing work, and how are they supervised?",
+   "outcome": "AI agents and automations carry out multi-step marketing tasks reliably within defined limits, under human supervision.",
+   "evidence": "Agents or automations in production with documented scope and limits; run logs; a named human supervisor for each.",
+   "evLevel": "Survey-tested",
+   "evBasis": "In marketing and sales, 26% of high performers report scaling AI agents against 7% of other respondents (2026, p.20, Exhibit 12). High performers are more than three times as likely as others to scale agents in most functions.",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "No agents or automations are in use.",
+    "Individuals experiment with agents or automations with no oversight.",
+    "A few agents or automations run in pilot with documented scope but limited supervision.",
+    "Agents or automations are in production with documented scope and limits, run logs, and a named human supervisor for each.",
+    "Multi-step orchestration across workflows is managed centrally, monitored, and expanded as limits and performance are proven."
+   ],
+   "phase": 3,
+   "lane": "M"
+  },
+  {
+   "id": "O1",
+   "cat": 2,
+   "name": "Roles, ownership and business-led redesign",
+   "critical": false,
+   "activity": "Assign roles and ownership until the business leads AI-enabled redesign",
+   "definition": "Clear accountability for AI across marketing (who owns workflows, outcomes and risks), with business leaders, not only IT or digital teams, leading end-to-end redesign.",
+   "question": "Who is accountable for AI outcomes in marketing, and how far do business leaders (not just IT or digital teams) lead the redesign?",
+   "outcome": "Every AI workflow, outcome and risk has a named owner, and business leaders, not only IT or digital teams, lead end-to-end redesign.",
+   "evidence": "A RACI or equivalent naming owners for AI workflows, outcomes and risks; business leaders named as redesign leads.",
+   "evLevel": "Framework-supported",
+   "evBasis": "McKinsey commentary warns that delegating AI implementation to IT or digital teams tends to fail (2025, p.3) and calls for an operating model that lets business leaders reimagine workflows in their own areas (2026, p.14).",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value",
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "No one is accountable for AI in marketing.",
+    "Accountability sits informally with an enthusiast or with IT.",
+    "Owners are named for some AI work, but ownership of outcomes and risks is unclear, and IT or digital lead the redesign.",
+    "A RACI or equivalent names owners for AI workflows, outcomes and risks; business leaders are named as redesign leads.",
+    "Ownership is reviewed regularly, built into role descriptions and objectives, and business leaders drive redesign with IT in support."
+   ],
+   "phase": 1,
+   "lane": "L"
+  },
+  {
+   "id": "O2",
+   "cat": 2,
+   "name": "Transformation office with authority to scale",
+   "critical": false,
+   "activity": "Establish a transformation office until it has the authority to scale change",
+   "definition": "A team or equivalent with the authority to accelerate scaling of AI solutions and remove bottlenecks across the function.",
+   "question": "Is there a team empowered to scale AI solutions and clear blockers, and what authority does it have?",
+   "outcome": "A transformation team (or equivalent) has the authority to scale AI solutions and remove bottlenecks across the function.",
+   "evidence": "A team charter with decision rights and a budget or mandate; a record of bottlenecks it has removed.",
+   "evLevel": "Survey-tested",
+   "evBasis": "Tested in 2026 (p.19, Exhibit 11), but as read from the chart the gap between high performers and others is small, so treat this as supporting rather than decisive evidence. A dedicated adoption team was also one of 12 practices tested in 2025.",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "No team coordinates AI change.",
+    "An informal group meets to share AI ideas, with no mandate.",
+    "A team is set up with a mandate that the leadership supports, but with limited decision rights or budget.",
+    "A team charter sets out decision rights and a budget or mandate; there is a record of bottlenecks the team has removed.",
+    "The team is a recognised driver of scale, reports results to senior leadership, and adjusts its focus as the function's needs change."
+   ],
+   "phase": 1,
+   "lane": "L"
+  },
+  {
+   "id": "O3",
+   "cat": 2,
+   "name": "Central vs distributed model",
+   "critical": false,
+   "activity": "Choose a central or distributed model until responsibilities are clear and working",
+   "definition": "A deliberate choice about what is run centrally (for example standards, platforms, risk) and what sits within teams or regions.",
+   "question": "How have you decided which AI activities are run centrally and which are left to individual teams or regions?",
+   "outcome": "It is clear what is run centrally (standards, platforms, risk) and what sits in teams or regions, and the split works in practice.",
+   "evidence": "A documented central-versus-local split; standards the teams actually follow; no unresolved duplication across teams.",
+   "evLevel": "Framework-supported",
+   "evBasis": "Descriptive evidence only: risk and compliance and data governance are most often fully centralised, while adoption of AI solutions and tech talent are most often hybrid (2025, p.4, Exhibit 1).",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "There is no view of what should be centralised or local; teams act independently.",
+    "Some central guidance exists, but teams and regions largely follow their own approach.",
+    "A central-versus-local split is proposed but not consistently followed; duplication is common.",
+    "A documented central-versus-local split exists; teams follow the standards; no unresolved duplication across teams.",
+    "The model is reviewed as AI use matures, and central and distributed teams jointly define the best standards that both use, so the function moves quickly without losing control."
+   ],
+   "phase": 3,
+   "lane": "L"
+  },
+  {
+   "id": "O4",
+   "cat": 2,
+   "name": "Build, buy and partner decisions; agency management",
+   "critical": false,
+   "activity": "Decide what to build, buy or partner for, and manage agencies, until choices are deliberate",
+   "definition": "A deliberate approach to what the function builds, buys or sources from agencies and vendors, with partners engaged from a position of agency.",
+   "question": "How do you decide whether to build, buy or use agencies for AI capability, and how do you manage partners' use of AI?",
+   "outcome": "Decisions to build, buy or use agencies and vendors for AI are made deliberately, and partners work to the function's standards.",
+   "evidence": "A build, buy or partner decision record; agency briefs and contracts that cover AI use; partners reviewed against the function's standards.",
+   "evLevel": "Framework-supported",
+   "evBasis": "McKinsey commentary says leading organisations are deliberate about where to buy, where to build and where to develop internal integration capability (2026, p.10). Gartner's model includes an ecosystems and operating models pillar.",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "Gartner AI Maturity Model (abstract) — Gartner, November 2024 — https://www.gartner.com/en/documents/5937907"
+   ],
+   "levels": [
+    "AI tools and capability are bought or commissioned ad hoc.",
+    "Agencies and vendors use AI without the function's knowledge or guidance.",
+    "Some build, buy or partner choices are discussed, but there is no agreed approach; agency AI use is only partly addressed in briefs.",
+    "A build, buy or partner decision record exists; agency briefs and contracts cover AI use; partners are reviewed against the function's standards.",
+    "Partner choices are reviewed on value and risk, and partners are held to measurable AI standards."
+   ],
+   "phase": 2,
+   "lane": "L"
+  },
+  {
+   "id": "O5",
+   "cat": 2,
+   "name": "Cross-functional alignment",
+   "critical": false,
+   "activity": "Align marketing with IT, legal, sales and other functions until AI work is joined up",
+   "definition": "Marketing works with sales, IT, data, legal and finance on shared AI priorities, data and processes.",
+   "question": "How aligned are marketing, sales, IT, data and legal on AI priorities and ways of working?",
+   "outcome": "Marketing, sales, IT, data, legal and finance work from shared AI priorities, data and processes.",
+   "evidence": "Joint AI priorities agreed with other functions; shared forum or regular meeting; shared data or process agreements.",
+   "evLevel": "Framework-supported",
+   "evBasis": "McKinsey commentary says scaling needs cross-functional operating muscle (2026, p.24). Forrester found 91% of frontline B2B marketing leaders with high AI readiness reported alignment with sales, against 72% of those with lower readiness.",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "AI Readiness Is Already High In Advanced Frontline Marketing Teams (based on Forrester B2B Frontline Marketing Survey, 2024; blog date not shown) — Forrester — https://www.forrester.com/blogs/ai-readiness-is-high-in-advanced-frontline-marketing"
+   ],
+   "levels": [
+    "Marketing works on AI separately from other functions.",
+    "Contact with IT, legal or others happens when problems arise.",
+    "Some joint working exists, but priorities are not shared or are agreed project by project.",
+    "Joint AI priorities are agreed with other functions; a shared forum or regular meeting exists; shared data or process agreements are in place.",
+    "Cross-functional AI priorities are planned together, with shared targets and resources, and marketing helps set enterprise AI direction."
+   ],
+   "phase": 2,
+   "lane": "L"
+  },
+  {
+   "id": "P1",
+   "cat": 3,
+   "name": "AI literacy (all staff)",
+   "critical": false,
+   "activity": "Build AI literacy for all staff until everyone can use AI safely and effectively",
+   "definition": "Everyone in the team understands what AI can and cannot do, its risks, and how to use approved tools responsibly.",
+   "question": "What proportion of your team has had structured AI literacy training, and how is it kept up to date?",
+   "outcome": "Everyone in the team can explain what AI can and cannot do, its risks, and how to use approved tools responsibly.",
+   "evidence": "Completion and assessment records covering all staff; a short check showing staff can explain AI limits and approved-tool rules.",
+   "evLevel": "Framework-supported",
+   "evBasis": "MIT CISR's first maturity stage funds AI literacy for the board and top management and skill building for everyone else. Article 4 of the EU AI Act sets an AI literacy duty on organisations that provide or deploy AI. McKinsey notes employee AI fluency is growing (2026, p.14).",
+   "sources": [
+    "Building Enterprise AI Maturity — MIT Center for Information Systems Research (Weill, Woerner, Sebastian), December 2024 — https://cisr.mit.edu/publication/2024_1201_EnterpriseAIMaturityModel_WeillWoernerSebastian",
+    "Regulation (EU) 2024/1689 (EU AI Act), Article 4 — European Parliament and Council, July 2024 — https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689 (EUR-Lex text not read by the author; secondary sources report Article 4 was reworded by Regulation (EU) 2026/1744 in July 2026 — verify before relying on it)",
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "Staff have had no AI training and use tools without guidance.",
+    "Some staff have self-taught; there is no shared understanding of limits and risks.",
+    "AI literacy training is available or planned, but only some staff have taken it.",
+    "Completion and assessment records cover all staff; a short check shows staff can explain AI limits and the approved-tool rules.",
+    "AI literacy is refreshed on a set cadence, updated for new tools and risks, and is part of onboarding."
+   ],
+   "phase": 0,
+   "lane": "M"
+  },
+  {
+   "id": "P2",
+   "cat": 3,
+   "name": "Role-based capability training",
+   "critical": false,
+   "activity": "Train each role in the AI skills it needs until capability is verified in practice",
+   "definition": "Training matched to roles (for example content, demand generation, analytics, operations) so each person knows how to apply AI in their own work.",
+   "question": "How is AI training tailored to specific marketing roles?",
+   "outcome": "Each role has the AI skills it needs, and people apply them in their own work.",
+   "evidence": "A role-by-role skills matrix with training mapped to it; evidence of the skills used in live work, not just course completion.",
+   "evLevel": "Framework-supported",
+   "evBasis": "Role-based capability training was one of 12 adoption and scaling practices tested in 2025 (p.8). Each practice correlated positively with EBIT impact, but fewer than one-third of respondents followed most of them (p.8).",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "No one has considered which AI skills each role needs.",
+    "Training is generic and left to individuals.",
+    "Role skills are partly defined and some role-based training is delivered, with limited follow-up.",
+    "A role-by-role skills matrix has training mapped to it, with evidence the skills are used in live work, not just course completion.",
+    "Role skills are reviewed as tools and workflows change, and proficiency is assessed and used for development and hiring."
+   ],
+   "phase": 1,
+   "lane": "M"
+  },
+  {
+   "id": "P3",
+   "cat": 3,
+   "name": "Leadership AI fluency",
+   "critical": false,
+   "activity": "Train leaders until they are AI fluent and keep that fluency current",
+   "definition": "Marketing leaders and the senior team understand AI well enough to set direction, challenge claims and govern its use.",
+   "question": "How confident and fluent are your senior marketing leaders in AI, and how is that developed?",
+   "outcome": "Marketing leaders understand AI well enough to set direction, challenge claims and govern its use, and they keep that understanding current.",
+   "evidence": "Leader learning records; leaders can challenge AI claims in review meetings; AI literacy refreshed on a set cadence.",
+   "evLevel": "Framework-supported",
+   "evBasis": "MIT CISR's first stage directs funding to AI literacy for the board and top management team. McKinsey's 2025 practices include senior leaders actively engaged in driving adoption (p.8).",
+   "sources": [
+    "Building Enterprise AI Maturity — MIT Center for Information Systems Research (Weill, Woerner, Sebastian), December 2024 — https://cisr.mit.edu/publication/2024_1201_EnterpriseAIMaturityModel_WeillWoernerSebastian",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "Leaders have little AI understanding and rely on others' summaries.",
+    "Some leaders have attended briefings; understanding is uneven.",
+    "A leadership learning plan exists, but few leaders have completed it and challenge of AI claims is rare.",
+    "Leader learning records exist; leaders can challenge AI claims in review meetings; AI literacy is refreshed on a set cadence.",
+    "Leaders keep their AI knowledge current through hands-on use and set direction with confidence."
+   ],
+   "phase": 0,
+   "lane": "L"
+  },
+  {
+   "id": "P4",
+   "cat": 3,
+   "name": "Strategic workforce planning",
+   "critical": false,
+   "activity": "Plan the workforce strategically until roles and skills match AI-enabled work",
+   "definition": "A plan for how roles, skills and capacity will change with AI, including skills gap analysis, hiring, reskilling and career paths.",
+   "question": "Have you assessed how AI will change roles and skills in the team, and do you have a plan to respond?",
+   "outcome": "Roles, skills and capacity are planned against AI-driven change, with skills gaps closed through hiring, reskilling and career paths.",
+   "evidence": "A workforce plan with a skills-gap analysis and actions (hiring, reskilling, career paths) that are funded and tracked.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are more likely to have completed a strategic workforce planning exercise (2026, p.19, Exhibit 11; figures read from the chart, so approximate).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "No one has considered how AI changes roles or skills.",
+    "Concerns about roles are discussed informally, with no analysis.",
+    "A skills-gap analysis is under way, or a draft plan exists, but it is not funded.",
+    "A workforce plan with a skills-gap analysis and actions (hiring, reskilling, career paths) is funded and tracked.",
+    "The workforce plan is updated at least annually as AI evolves, linked to financial planning, and supports internal mobility."
+   ],
+   "phase": 3,
+   "lane": "L"
+  },
+  {
+   "id": "D1",
+   "cat": 4,
+   "name": "Access and security",
+   "critical": false,
+   "activity": "Secure data and tool access until the right people, and only they, can use the right data",
+   "definition": "Controls over who, and which AI tools, can reach marketing and customer data, with security built in from the start.",
+   "question": "How are access to data and the use of AI tools controlled and secured in your marketing function?",
+   "outcome": "Only the right people and approved AI tools can reach marketing and customer data, and security is built in from the start.",
+   "evidence": "Access control lists and tool approval records; security review completed before tools go live; regular access audits.",
+   "evLevel": "Framework-supported",
+   "evBasis": "McKinsey commentary says access control and security should be designed in at the front end, not added afterwards (2025, p.7). Cybersecurity risks are among those organisations work to mitigate (2026, Exhibit 15).",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value",
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "Anyone can use any AI tool with any data; there are no access rules.",
+    "Some tools are blocked or approved informally; data access is not restricted.",
+    "Access rules exist for some tools and data, but approvals and checks are inconsistent.",
+    "Access control lists and tool approval records exist; security review is completed before tools go live; access is audited regularly.",
+    "Access is managed by risk, reviewed automatically, and security is built into new tools and workflows from the start."
+   ],
+   "phase": 1,
+   "lane": "M"
+  },
+  {
+   "id": "D2",
+   "cat": 4,
+   "name": "Data quality and availability",
+   "critical": false,
+   "activity": "Improve data quality and availability until data is AI-ready",
+   "definition": "Marketing data (customer, account, content, performance) is accurate, complete, timely and available to AI tools when needed.",
+   "question": "How reliable and available is your marketing data for use by AI?",
+   "outcome": "Marketing data (customer, account, content, performance) is accurate, complete, timely and available to AI tools when needed.",
+   "evidence": "Data quality measures (accuracy, completeness, timeliness) reported against agreed thresholds; AI tools can reach the data they need.",
+   "evLevel": "Framework-supported",
+   "evBasis": "Gartner's abstract says that if marketing data is not AI-ready, the marketing organisation is not AI-ready, and sets out five milestones from fragmented to augmented data. Only the abstract is public.",
+   "sources": [
+    "Stop Wasting AI Investments; Make Your Marketing Data AI-Ready (abstract only; full research is paywalled) — Gartner, July 2026 — https://www.gartner.com/en/documents/8108497"
+   ],
+   "levels": [
+    "Data quality is unknown; data is scattered and unreliable.",
+    "Data problems are recognised, and fixed ad hoc for individual tasks.",
+    "Quality is measured for some data sets, with improvement plans but gaps remain; AI tools have limited access.",
+    "Data quality measures (accuracy, completeness, timeliness) are reported against agreed thresholds; AI tools can reach the data they need.",
+    "Data quality is monitored continuously, issues are fixed at source, and data is treated as a product maintained for AI use."
+   ],
+   "phase": 1,
+   "lane": "M"
+  },
+  {
+   "id": "D3",
+   "cat": 4,
+   "name": "Data integration, architecture and semantic layer",
+   "critical": false,
+   "activity": "Integrate data and build a semantic layer until AI can use consistent definitions",
+   "definition": "Data from different systems is connected and organised into a consistent structure (for example a semantic layer or knowledge graph) that AI can use.",
+   "question": "How well is data from your marketing systems connected and structured so AI can use it consistently?",
+   "outcome": "Data from different systems is connected in a consistent structure (for example a semantic layer) that AI tools can use reliably.",
+   "evidence": "A data architecture diagram; a shared semantic layer, knowledge graph or maintained data dictionary used by AI tools; consistent definitions across systems.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are more likely to have a semantic layer or knowledge graph for company data (2026, p.19, Exhibit 11; read from the chart, so approximate). MIT CISR's third stage builds a scalable enterprise architecture and makes data and outcomes transparent.",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "Building Enterprise AI Maturity — MIT Center for Information Systems Research (Weill, Woerner, Sebastian), December 2024 — https://cisr.mit.edu/publication/2024_1201_EnterpriseAIMaturityModel_WeillWoernerSebastian"
+   ],
+   "levels": [
+    "Systems are not connected; the same data is defined differently in each.",
+    "Some data is connected manually or through one-off integrations.",
+    "An architecture or glossary is being developed, but definitions differ across systems.",
+    "A data architecture diagram exists; a shared semantic layer, knowledge graph or maintained data dictionary is used by AI tools; definitions are consistent across systems.",
+    "The architecture is evolved deliberately for AI, definitions are governed, and new tools connect to the shared layer by default."
+   ],
+   "phase": 2,
+   "lane": "M"
+  },
+  {
+   "id": "D4",
+   "cat": 4,
+   "name": "AI tool and platform stack",
+   "critical": false,
+   "activity": "Select and manage the AI tool stack until it is rationalised and fit for purpose",
+   "definition": "A coherent, integrated set of AI tools and platforms (within martech and beyond) chosen to fit workflows and scale.",
+   "question": "How deliberately has your AI tool stack been selected and integrated with your martech?",
+   "outcome": "AI tools and platforms form a coherent, integrated stack that fits the workflows and can scale.",
+   "evidence": "A documented tool stack with integration map; overlapping tools rationalised; a review against workflow needs.",
+   "evLevel": "Framework-supported",
+   "evBasis": "High performers scale a wider range of AI tools than others (2026, p.21, Exhibit 13).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "AI tools are chosen individually with no overview.",
+    "A list of tools exists, with overlaps and gaps not reviewed.",
+    "A target tool stack is proposed, but integration is partial and overlaps remain.",
+    "A documented tool stack with an integration map exists; overlapping tools are rationalised; the stack is reviewed against workflow needs.",
+    "The stack is reviewed regularly against value, cost and risk, and new tools are assessed against a clear standard."
+   ],
+   "phase": 2,
+   "lane": "M"
+  },
+  {
+   "id": "D5",
+   "cat": 4,
+   "name": "Performance monitoring of tools and models",
+   "critical": false,
+   "activity": "Monitor tool and model performance until problems are caught and fixed early",
+   "definition": "Ongoing monitoring of AI tools' accuracy, reliability, cost and drift, with action when they degrade.",
+   "question": "How do you monitor the quality, reliability and cost of the AI tools and models you use?",
+   "outcome": "Problems with AI tools' accuracy, reliability, cost or drift are caught early and fixed.",
+   "evidence": "Monitoring reports on accuracy, reliability, cost and drift; incidents logged with fixes and response times.",
+   "evLevel": "Framework-supported",
+   "evBasis": "NIST's Measure function covers testing and monitoring of AI systems; a feedback mechanism for AI performance was one of 12 practices tested in 2025 (p.8).",
+   "sources": [
+    "Artificial Intelligence Risk Management Framework (AI RMF 1.0), NIST AI 100-1 — National Institute of Standards and Technology, January 2023 — https://doi.org/10.6028/NIST.AI.100-1",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "Tool and model performance is not checked.",
+    "Problems are noticed only when users complain.",
+    "Some tools are checked periodically, with no standard measures or response routine.",
+    "Monitoring reports cover accuracy, reliability, cost and drift; incidents are logged with fixes and response times.",
+    "Monitoring is automated with alerts and thresholds, and results feed tool selection and workflow redesign."
+   ],
+   "phase": 4,
+   "lane": "M"
+  },
+  {
+   "id": "G1",
+   "cat": 5,
+   "name": "Policy and acceptable use",
+   "critical": false,
+   "activity": "Set AI policy and acceptable use until it is published, understood and followed",
+   "definition": "Written, communicated and enforced rules on which AI tools, data and uses are permitted in marketing.",
+   "question": "How clear, communicated and enforced is your AI acceptable-use policy?",
+   "outcome": "Marketing has rules on which AI tools, data and uses are permitted, and people know them and follow them.",
+   "evidence": "A published AI policy with an owner and review date; staff acknowledgement or training records; examples of breaches handled.",
+   "evLevel": "Framework-supported",
+   "evBasis": "NIST's Govern function covers policies, accountability and oversight. Forrester predicts B2B companies will lose more than $10 billion through ungoverned use of generative AI.",
+   "sources": [
+    "Artificial Intelligence Risk Management Framework (AI RMF 1.0), NIST AI 100-1 — National Institute of Standards and Technology, January 2023 — https://doi.org/10.6028/NIST.AI.100-1",
+    "Forrester's 2026 B2B Marketing, Sales, And Product Predictions (press release) — Forrester via Business Wire, October 2025 — https://www.businesswire.com/news/home/20251028458309/en/Forresters-2026-B2B-Marketing-Sales-And-Product-Predictions-B2B-Companies-Will-Lose-More-Than-$10-Billion-Because-Of-Ungoverned-Use-Of-Generative-AI"
+   ],
+   "levels": [
+    "There is no AI policy.",
+    "Guidance exists in emails or in the enterprise policy, with no marketing-specific rules.",
+    "A marketing AI policy exists in draft or is published, but awareness and enforcement are patchy.",
+    "A published AI policy has an owner and review date; staff acknowledgement or training records exist; examples of breaches handled can be shown.",
+    "The policy is reviewed regularly against new tools and uses, is easy to apply, and breaches are rare and handled quickly."
+   ],
+   "phase": 1,
+   "lane": "L"
+  },
+  {
+   "id": "G2",
+   "cat": 5,
+   "name": "Enterprise governance alignment and oversight",
+   "critical": false,
+   "activity": "Align with enterprise governance and oversight until senior ownership is in place",
+   "definition": "Marketing's AI governance is aligned with the organisation's, with defined senior oversight and escalation routes.",
+   "question": "How is marketing's AI governance aligned with enterprise governance, and who has senior oversight?",
+   "outcome": "Marketing's AI governance is aligned with the organisation's, with senior oversight and escalation routes that work.",
+   "evidence": "A link to enterprise AI governance; a named senior overseer; an escalation route that has been used.",
+   "evLevel": "Survey-tested",
+   "evBasis": "In 2025, CEO oversight of AI governance was the element most correlated with EBIT impact (p.2), and risk and data governance were the most centralised elements of AI deployment (p.4, Exhibit 1).",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "Marketing AI is not part of any governance arrangement.",
+    "Governance is discussed but there is no link to the enterprise approach.",
+    "A link to enterprise governance exists, but oversight and escalation routes are unclear.",
+    "Marketing is linked to enterprise AI governance; a named senior overseer is in place; an escalation route has been used.",
+    "Governance is integrated with the enterprise, oversight is active and well informed, and marketing contributes to enterprise AI policy."
+   ],
+   "phase": 1,
+   "lane": "L"
+  },
+  {
+   "id": "G3",
+   "cat": 5,
+   "name": "Regulatory compliance",
+   "critical": false,
+   "activity": "Meet regulatory requirements until compliance is assessed and evidenced",
+   "definition": "Awareness of, and compliance with, applicable regulation (for example EU AI Act, GDPR, advertising rules) in marketing's AI use.",
+   "question": "How do you identify and meet the regulatory requirements that apply to your use of AI?",
+   "outcome": "Marketing's AI use complies with applicable regulation (for example EU AI Act, GDPR, advertising rules), and compliance can be shown.",
+   "evidence": "A regulatory register covering AI use; assessments or records of compliance; a named owner and review cadence.",
+   "evLevel": "Framework-supported",
+   "evBasis": "Regulatory compliance is among the risks organisations report working to mitigate, at similar levels for high performers and others (2026, p.23, Exhibit 15, read from the chart). The EU AI Act sets obligations for organisations that deploy AI.",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "Regulation (EU) 2024/1689 (EU AI Act), Article 4 — European Parliament and Council, July 2024 — https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689 (EUR-Lex text not read by the author; secondary sources report Article 4 was reworded by Regulation (EU) 2026/1744 in July 2026 — verify before relying on it)"
+   ],
+   "levels": [
+    "There is no awareness of AI-related regulation.",
+    "Some staff know of GDPR or advertising rules; AI-specific rules are not considered.",
+    "Relevant regulations are identified, but assessment of marketing's AI use is incomplete.",
+    "A regulatory register covers AI use; assessments or records of compliance exist; a named owner and review cadence are in place.",
+    "Regulatory change is tracked proactively, compliance is built into workflows, and the function can evidence compliance on request."
+   ],
+   "phase": 2,
+   "lane": "L"
+  },
+  {
+   "id": "G4",
+   "cat": 5,
+   "name": "Risk assessment and monitoring (baseline and advanced)",
+   "critical": false,
+   "activity": "Assess and monitor AI risk until risks are identified, rated and managed",
+   "definition": "Systematic identification and monitoring of AI risks: baseline (accuracy, privacy) and advanced (explainability, security vulnerabilities, unintended behaviour).",
+   "question": "How do you assess and monitor AI risks, from accuracy and privacy through to security and explainability?",
+   "outcome": "AI risks, both baseline (accuracy, privacy) and advanced (explainability, security, unintended behaviour), are identified, rated and monitored.",
+   "evidence": "An AI risk register with ratings, owners and mitigations; monitoring reviewed on a set cadence.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are much more likely to mitigate AI-driven technical vulnerabilities and unauthorised actions; mitigation of accuracy and privacy risks is similar across groups (2026, p.23, Exhibit 15). NIST's Map, Measure and Manage functions give a reference process.",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "Artificial Intelligence Risk Management Framework (AI RMF 1.0), NIST AI 100-1 — National Institute of Standards and Technology, January 2023 — https://doi.org/10.6028/NIST.AI.100-1"
+   ],
+   "levels": [
+    "AI risks are not identified.",
+    "Risks such as inaccuracy and privacy are recognised but not recorded.",
+    "A risk list exists for some uses; ratings, owners and monitoring are incomplete.",
+    "An AI risk register has ratings, owners and mitigations; monitoring is reviewed on a set cadence.",
+    "Baseline and advanced risks are assessed before launch and monitored continuously, with learning from incidents feeding back."
+   ],
+   "phase": 2,
+   "lane": "M"
+  },
+  {
+   "id": "G5",
+   "cat": 5,
+   "name": "Customer trust, brand and IP safeguards",
+   "critical": false,
+   "activity": "Safeguard customer trust, brand and IP until controls are in place and tested",
+   "definition": "Safeguards that protect customer trust, brand integrity and intellectual property (for example disclosure, provenance, copyright checks, brand review).",
+   "question": "What safeguards protect customer trust, your brand and your intellectual property when you use AI in content and customer interactions?",
+   "outcome": "Customer trust, brand integrity and intellectual property are protected when AI is used, and the safeguards are tested.",
+   "evidence": "Disclosure, provenance, copyright and brand-review checks built into workflows; spot checks or audits show they are applied.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are more likely to mitigate intellectual property infringement and organisational reputation risks (2026, p.23, Exhibit 15). A comprehensive approach to fostering customer trust was one of 12 practices tested in 2025 (p.8).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "No safeguards protect customer trust, brand or IP in AI-generated work.",
+    "Some staff check outputs for brand fit or copyright on their own initiative.",
+    "Safeguards (disclosure, provenance, copyright, brand review) are defined, but applied inconsistently.",
+    "Disclosure, provenance, copyright and brand-review checks are built into workflows; spot checks or audits show they are applied.",
+    "Safeguards are audited regularly and strengthened from incidents and customer feedback, and customer trust is measured."
+   ],
+   "phase": 2,
+   "lane": "M"
+  },
+  {
+   "id": "G6",
+   "cat": 5,
+   "name": "Agent autonomy and permission controls",
+   "critical": false,
+   "activity": "Control agent autonomy and permissions until agents act only within approved limits",
+   "definition": "Limits on what AI agents may do on their own (systems, data, spending, publishing), with permissions, logging and the ability to stop them.",
+   "question": "What limits, permissions and audit trails govern what your AI agents can do on their own?",
+   "outcome": "AI agents act only within approved limits on systems, data, spending and publishing, and people can see what they did and stop them.",
+   "evidence": "A permissions matrix for each agent; action logs; a tested method to stop an agent; human approval for high-risk actions.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are much more likely to work to mitigate unauthorised or unintended AI actions (2026, p.23, Exhibit 15).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+   ],
+   "levels": [
+    "Agents have no defined limits.",
+    "Agents run with whatever access their creator has.",
+    "Permissions are defined for some agents, with limited logging and no tested method to stop them.",
+    "A permissions matrix exists for each agent; action logs are kept; a tested method to stop an agent is in place; human approval is needed for high-risk actions.",
+    "Permissions are least-privilege by default and reviewed against agent behaviour; automated controls halt agents that exceed limits, and human review is retained for high-risk agent behaviour."
+   ],
+   "phase": 3,
+   "lane": "M"
+  },
+  {
+   "id": "C1",
+   "cat": 6,
+   "name": "Case for change and regular communication",
+   "critical": false,
+   "activity": "Make the case for change and communicate regularly until staff understand why and what next",
+   "definition": "A compelling story for why the team is changing, repeated regularly with evidence of results.",
+   "question": "How well has the case for AI adoption been explained, and how often are results communicated?",
+   "outcome": "Staff can explain why the team is changing and what it means for them, and hear about results regularly.",
+   "evidence": "A change narrative and communication plan; a regular cadence of updates that include results; staff survey or pulse answers show understanding.",
+   "evLevel": "Framework-supported",
+   "evBasis": "Regular internal communication about the value created by AI and a compelling change story were two of 12 adoption and scaling practices tested in 2025 (p.8).",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "No explanation of why the team is changing has been given.",
+    "Leaders mention AI in meetings, but there is no consistent message.",
+    "A change narrative exists, but communication is irregular and rarely includes results.",
+    "A change narrative and communication plan exist; updates are regular and include results; staff survey or pulse answers show understanding.",
+    "Communication is two-way, adapted to roles, and staff can point to results and next steps in their own area."
+   ],
+   "phase": 0,
+   "lane": "L"
+  },
+  {
+   "id": "C2",
+   "cat": 6,
+   "name": "Adoption and champion networks",
+   "critical": false,
+   "activity": "Build adoption and champion networks until use spreads beyond early adopters",
+   "definition": "Structured support for adoption (champions, communities of practice, coaching) so use spreads beyond early adopters.",
+   "question": "What structures help people adopt AI beyond the early enthusiasts?",
+   "outcome": "AI use has spread beyond early adopters through champions, communities of practice and coaching.",
+   "evidence": "A champion network with named members and time allocated; a community of practice that meets; adoption data showing spread beyond early adopters.",
+   "evLevel": "Proposed (author judgement)",
+   "evBasis": "No direct source for champion networks. A related practice, a dedicated team to drive adoption, was tested in 2025 (p.8).",
+   "sources": [
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "There is no support for adoption; use depends on individual enthusiasm.",
+    "Enthusiasts help colleagues informally.",
+    "Champions are identified or a community exists, with limited time or structure.",
+    "A champion network has named members and allocated time; a community of practice meets; adoption data shows use spreading beyond early adopters.",
+    "The network is self-sustaining, shares practice across teams and regions, and adoption is measured by depth of use, not just access."
+   ],
+   "phase": 1,
+   "lane": "M"
+  },
+  {
+   "id": "C3",
+   "cat": 6,
+   "name": "Test-and-learn experimentation",
+   "critical": false,
+   "activity": "Run test-and-learn experiments until learning is captured and acted on",
+   "definition": "Safe, structured experimentation with defined learning goals, and a route from successful tests to scale.",
+   "question": "How do you run AI experiments, capture what you learn and move successes into normal practice?",
+   "outcome": "Experiments have defined learning goals, and successful ones move into scaled use.",
+   "evidence": "Experiment records with hypotheses, learning goals and results; a defined route from test to scale; at least one test scaled.",
+   "evLevel": "Framework-supported",
+   "evBasis": "MIT CISR's third stage includes developing a pervasive test-and-learn culture.",
+   "sources": [
+    "Building Enterprise AI Maturity — MIT Center for Information Systems Research (Weill, Woerner, Sebastian), December 2024 — https://cisr.mit.edu/publication/2024_1201_EnterpriseAIMaturityModel_WeillWoernerSebastian"
+   ],
+   "levels": [
+    "Experimenting with AI is discouraged or not permitted.",
+    "Individuals experiment without guidance or sharing of what they learn.",
+    "Experiments are permitted and some have learning goals, but results are not consistently captured or scaled.",
+    "Experiment records show hypotheses, learning goals and results; a defined route from test to scale exists; at least one test has been scaled.",
+    "Experimentation is continuous and safe, learning is shared function-wide, and a regular share of tests moves into scaled use."
+   ],
+   "phase": 2,
+   "lane": "M"
+  },
+  {
+   "id": "C4",
+   "cat": 6,
+   "name": "Employee trust, workload strain and workforce transition",
+   "critical": false,
+   "activity": "Address trust, workload strain and transition until staff feel supported through the change",
+   "definition": "Open handling of employee concerns about job impact, trust in AI outputs, workload pressure and information overload.",
+   "question": "How do you listen to and address staff concerns about trust, workload and job change arising from AI?",
+   "outcome": "Employees' concerns about job impact, trust in AI outputs and workload are raised openly and acted on.",
+   "evidence": "Pulse survey or listening-session results on trust and workload; a log of concerns raised and actions taken.",
+   "evLevel": "Survey-tested",
+   "evBasis": "Mid-level managers and individual contributors are more likely than executives to report AI-related strains (47% against 31%) (2026, p.11, Exhibit 5). Fostering employee trust in AI was one of 12 practices tested in 2025 (p.8).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "Concerns about jobs, trust or workload are not discussed.",
+    "Concerns are raised informally, with no structured response.",
+    "Concerns are acknowledged and there are some listening sessions, but follow-up actions are limited.",
+    "Pulse survey or listening-session results on trust and workload exist; a log of concerns raised and actions taken is kept.",
+    "Concerns are tracked over time, acted on visibly, and workforce transition is supported with agreed commitments that the leadership team backs."
+   ],
+   "phase": 3,
+   "lane": "L"
+  },
+  {
+   "id": "C5",
+   "cat": 6,
+   "name": "Performance management and recognition",
+   "critical": false,
+   "activity": "Reflect AI use and results in performance management until good practice is rewarded",
+   "definition": "AI use, and the results it delivers, are reflected in objectives, performance reviews, incentives and recognition.",
+   "question": "How is effective use of AI reflected in objectives, performance reviews and recognition?",
+   "outcome": "AI use and the results it delivers are reflected in objectives, performance reviews, incentives and recognition.",
+   "evidence": "AI use and outcomes appear in objectives and review templates; recognition or incentive examples.",
+   "evLevel": "Survey-tested",
+   "evBasis": "High performers are more likely to treat employees' AI use as a factor in performance management (2026, p.19, Exhibit 11; read from the chart, so approximate). Employee incentives were one of 12 practices tested in 2025 (p.8).",
+   "sources": [
+    "The state of AI in 2026: On the road to ROI — McKinsey & Company (QuantumBlack), August 2026 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    "The state of AI: How organizations are rewiring to capture value — McKinsey & Company (QuantumBlack), March 2025 — https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value"
+   ],
+   "levels": [
+    "AI use is not reflected in objectives or reviews.",
+    "Managers informally recognise AI users.",
+    "AI use appears in some objectives or reviews, but not consistently or tied to results.",
+    "AI use and outcomes appear in objectives and review templates; recognition or incentive examples exist.",
+    "Performance and reward consistently reflect effective, responsible AI use and results where it is used."
+   ],
+   "phase": 4,
+   "lane": "L"
+  }
+ ]
+}

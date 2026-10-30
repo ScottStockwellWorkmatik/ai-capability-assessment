@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Capability Assessment | Workmatik</title>
+<meta name="description" content="Assess how ready a marketing function is for AI. Score 35 capabilities across seven categories on a five-level scale, see critical gaps and download the results. Runs entirely in your browser.">
+<meta property="og:title" content="AI Capability Assessment">
+<meta property="og:description" content="Score 35 capabilities across seven categories, see critical gaps and an uneven-profile check, and download the results. Runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scottstockwellworkmatik.github.io/marketing-ai-capability-assessment/">
+<meta property="og:site_name" content="Workmatik">
+<meta property="og:image" content="https://scottstockwellworkmatik.github.io/marketing-ai-capability-assessment/og-image-1200.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI Capability Assessment by Workmatik: seven categories scored from not prepared to transformation ready">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="AI Capability">
+<link rel="manifest" href="site.webmanifest">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div>
+      <img class="logo" src="assets/logo-black.svg" alt="Workmatik" id="logoScreen">
+      <h1>AI Capability Assessment</h1>
+      <p class="sub">Score 35 capabilities across seven categories, from not prepared to transformation ready. See critical gaps, an uneven-profile check and where to start.</p>
+    </div>
+    <p class="privacy-chip" title="No data is sent to a server or stored by this page"><span aria-hidden="true">&#9679;</span> Runs in your browser. Nothing is uploaded or stored.</p>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <p id="loadError" class="error" role="alert" hidden></p>
+
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="tab-audit" aria-controls="panel-audit" aria-selected="true">Assessment</button>
+    <button class="tab" role="tab" id="tab-results" aria-controls="panel-results" aria-selected="false" tabindex="-1">Results</button>
+    <button class="tab" role="tab" id="tab-guide" aria-controls="panel-guide" aria-selected="false" tabindex="-1">How to use</button>
+  </div>
+
+  <!-- Assessment -->
+  <section id="panel-audit" role="tabpanel" aria-labelledby="tab-audit">
+    <div class="info-box">
+      <strong>How to assess.</strong> For each capability, read the assessment question and the evidence of completion, then choose the level that best matches what you can show today. Add a note on the evidence you saw. Mark a capability <em>out of scope</em> only if it does not apply to this function.
+    </div>
+
+    <form class="meta-form" id="metaForm" onsubmit="return false">
+      <label>Organisation or function
+        <input id="orgName" type="text" maxlength="80" autocomplete="off" placeholder="e.g. Acme EMEA Marketing">
+      </label>
+      <label>Assessor
+        <input id="auditor" type="text" maxlength="60" autocomplete="off" placeholder="e.g. initials or name">
+      </label>
+      <label>Assessment date
+        <input id="auditDate" type="date">
+      </label>
+    </form>
+
+    <div class="progress" aria-live="polite"><div class="bar"><span id="progBar" style="width:0"></span></div><span id="progText" class="hint"></span></div>
+    <div class="chips" id="catChips" role="group" aria-label="Filter by category"></div>
+    <div id="catCards"></div>
+
+    <div class="actions">
+      <button class="btn primary" id="btnGoResults">See results</button>
+      <button class="btn" id="btnLoad">Load a saved assessment (XLSX)</button>
+      <input id="fileInput" type="file" accept=".xlsx" hidden>
+      <button class="btn" id="btnReset">Reset assessment</button>
+    </div>
+    <ul id="loadMessages" class="messages" aria-live="polite"></ul>
+  </section>
+
+  <!-- Results -->
+  <section id="panel-results" role="tabpanel" aria-labelledby="tab-results" hidden>
+    <div id="resultsEmpty" class="empty">Score at least one capability on the Assessment tab to see results.</div>
+    <div id="resultsBody" hidden>
+      <div class="summary-grid" id="summaryCards"></div>
+
+      <div class="card">
+        <h2>Category scores</h2>
+        <div class="results-grid">
+          <div id="catBars"></div>
+          <div id="radar" class="radar" aria-label="Radar chart of category scores" role="img"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Checks <span class="hint">(thresholds are editable)</span></h2>
+        <div class="thresholds">
+          <label>Critical-gap threshold <span class="hint">(a critical capability at or below this is flagged)</span>
+            <input id="thrCritical" type="number" min="1" max="5" step="0.5" value="2">
+          </label>
+          <label>Uneven-profile threshold <span class="hint">(gap between strongest and weakest category, points)</span>
+            <input id="thrUneven" type="number" min="0.5" max="4" step="0.5" value="1.5">
+          </label>
+        </div>
+        <div id="checks"></div>
+        <p class="hint">Both thresholds are the author&rsquo;s proposals and have no published source. Change them to test other values.</p>
+      </div>
+
+      <div class="card">
+        <h2>Where to start</h2>
+        <p class="hint">Capabilities scored 2 or below, earliest phase of the journey map first, so foundations come before dependants. Critical capabilities are marked with a star.</p>
+        <div id="startList"></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="btnDownload">Download results (XLSX)</button>
+      </div>
+      <p class="hint">Keep the downloaded file. It is your record, and you can load it back on the Assessment tab to continue or compare.</p>
+    </div>
+  </section>
+
+  <!-- Guide -->
+  <section id="panel-guide" role="tabpanel" aria-labelledby="tab-guide" hidden>
+    <div class="card">
+      <h2>The five levels</h2>
+      <div class="level-grid" id="guideLevels"></div>
+    </div>
+    <div class="card">
+      <h2>How the scores work</h2>
+      <ol class="steps">
+        <li><strong>Capability score.</strong> The level you choose, 1 to 5.</li>
+        <li><strong>Category score.</strong> The average of the scored capabilities in that category. Out-of-scope capabilities are left out.</li>
+        <li><strong>Overall score.</strong> The average of the seven category scores, so every category carries equal weight. The level name is the nearest whole level.</li>
+        <li><strong>Critical capabilities.</strong> Four starred capabilities (S1, S3, S4, W2) are flagged if they score at or below the threshold, whatever the average says.</li>
+        <li><strong>Uneven profile.</strong> Flagged when the strongest and weakest category differ by the threshold or more, because practices reinforce one another and the weakest area holds back value.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>About the evidence</h2>
+      <p>Each capability carries an evidence level. <strong>Survey-tested</strong> means the practice was tested in a McKinsey Global Survey and linked to higher performers. <strong>Framework-supported</strong> means a published framework or commentary supports it. <strong>Proposed</strong> means it is the author&rsquo;s judgement with no direct source. Open <em>Source and evidence</em> under any capability to see the basis.</p>
+      <p>The level descriptors, critical flags, thresholds and journey-map phases are the author&rsquo;s draft judgement and have no published source.</p>
+    </div>
+    <div class="card">
+      <h2>About your data</h2>
+      <p>This page has no server, no account and no tracking. Scores exist only in this browser tab and are lost when you close or refresh it, unless you download the XLSX. Loaded files are read locally and never uploaded.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>&copy; Workmatik. Framework version <span id="fwVersion"></span>. This tool supports readiness planning and is not legal advice.</p>
+  </div>
+</footer>
+
+<script src="lib/xlsx.full.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
