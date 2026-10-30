@@ -43,6 +43,7 @@
   <div class="tabs" role="tablist" aria-label="Sections">
     <button class="tab" role="tab" id="tab-audit" aria-controls="panel-audit" aria-selected="true">Assessment</button>
     <button class="tab" role="tab" id="tab-results" aria-controls="panel-results" aria-selected="false" tabindex="-1">Results</button>
+    <button class="tab" role="tab" id="tab-compare" aria-controls="panel-compare" aria-selected="false" tabindex="-1">Compare</button>
     <button class="tab" role="tab" id="tab-guide" aria-controls="panel-guide" aria-selected="false" tabindex="-1">How to use</button>
   </div>
 
@@ -94,10 +95,12 @@
       <div class="card">
         <h2>Checks <span class="hint">(thresholds are editable)</span></h2>
         <div class="thresholds">
-          <label>Critical-gap threshold <span class="hint">(a critical capability at or below this is flagged)</span>
+          <label><span class="lbl">Critical-gap threshold</span>
+            <span class="hint">A critical capability at or below this score is flagged.</span>
             <input id="thrCritical" type="number" min="1" max="5" step="0.5" value="2">
           </label>
-          <label>Uneven-profile threshold <span class="hint">(gap between strongest and weakest category, points)</span>
+          <label><span class="lbl">Uneven-profile threshold</span>
+            <span class="hint">Gap in points between the strongest and weakest category.</span>
             <input id="thrUneven" type="number" min="0.5" max="4" step="0.5" value="1.5">
           </label>
         </div>
@@ -113,8 +116,56 @@
 
       <div class="actions">
         <button class="btn primary" id="btnDownload">Download results (XLSX)</button>
+        <button class="btn" id="btnCmpGo">Compare with earlier assessments</button>
       </div>
       <p class="hint">Keep the downloaded file. It is your record, and you can load it back on the Assessment tab to continue or compare.</p>
+    </div>
+  </section>
+
+  <!-- Compare -->
+  <section id="panel-compare" role="tabpanel" aria-labelledby="tab-compare" hidden>
+    <div class="info-box">
+      <strong>Review progress over time.</strong> Add one or more earlier assessments (the XLSX files you downloaded) and compare them with each other and with the assessment on this page. Files are read in your browser and are not uploaded.
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="btnCmpAdd">Add earlier assessments (XLSX)</button>
+      <input id="cmpFiles" type="file" accept=".xlsx" multiple hidden>
+      <button class="btn" id="cmpClear" hidden>Remove all earlier files</button>
+      <label class="check"><input type="checkbox" id="cmpCurrent" checked> Include the assessment currently on the Assessment tab</label>
+    </div>
+    <ul id="cmpMessages" class="messages" aria-live="polite"></ul>
+    <div id="cmpEmpty" class="empty">Add an earlier assessment file, or score some capabilities on the Assessment tab, to start comparing.</div>
+    <div id="cmpBody" hidden>
+      <div class="card">
+        <h2>Assessments compared</h2>
+        <p class="hint" id="cmpNote"></p>
+        <div class="table-scroll"><table id="cmpSnaps"></table></div>
+      </div>
+      <div class="card">
+        <h2>Overall trend</h2>
+        <p id="cmpHeadline"></p>
+        <div id="cmpTrend" class="trend"></div>
+      </div>
+      <div class="card">
+        <h2>Category scores</h2>
+        <div class="cmp-grid">
+          <div class="table-scroll"><table id="cmpCats"></table></div>
+          <div>
+            <div id="cmpRadar" class="radar" role="img" aria-label="Radar chart comparing category scores across assessments"></div>
+            <ul id="cmpLegend" class="legend"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Critical capabilities</h2>
+        <div class="table-scroll"><table id="cmpCrit"></table></div>
+        <p class="hint" id="cmpCritHint"></p>
+      </div>
+      <div class="card">
+        <h2>What changed, capability by capability</h2>
+        <div id="cmpMovers" class="movers"></div>
+      </div>
+      <div class="actions"><button class="btn primary" id="btnCmpDownload">Download comparison (XLSX)</button></div>
     </div>
   </section>
 
@@ -135,6 +186,27 @@
       </ol>
     </div>
     <div class="card">
+      <h2>Save, continue or revisit an assessment</h2>
+      <ol class="steps">
+        <li><strong>Save your work.</strong> On the Results tab, select <em>Download results (XLSX)</em>. You can download at any point, including a part-finished assessment, and unscored capabilities are simply left blank.</li>
+        <li><strong>Come back later.</strong> Open this page, stay on the Assessment tab and select <em>Load a saved assessment (XLSX)</em>. Choose the file you downloaded.</li>
+        <li><strong>Check the message.</strong> A green line under the buttons confirms how many scores were loaded. Scored capabilities, evidence notes, out-of-scope marks, the organisation, assessor, date and both thresholds all come back.</li>
+        <li><strong>Carry on.</strong> Score the remaining capabilities or change earlier ones, then download again. Use a new file name, or a new date, if you want to keep the earlier version as a historic record.</li>
+      </ol>
+      <p class="hint">Good to know: loading a file replaces whatever is on the page, so download first if you have unsaved scores. Only files downloaded from this tool will load. Keep the Scoring sheet and its column headings as they are. You can edit scores or notes in Excel before loading, as long as scores stay between 1 and 5. The page keeps nothing between visits, so the file is your only record. To see progress between assessments, use the Compare tab.</p>
+    </div>
+    <div class="card">
+      <h2>Compare progress over time</h2>
+      <ol class="steps">
+        <li><strong>Gather your files.</strong> Use the XLSX files downloaded from this tool, one per assessment. Each needs an assessment date in the Summary sheet (the app fills this in when you download). Up to six earlier files can be compared.</li>
+        <li><strong>Open the Compare tab.</strong> Select <em>Add earlier assessments (XLSX)</em> and choose one or several files at once. A green line confirms each one added.</li>
+        <li><strong>Include today&rsquo;s work if you want.</strong> Tick <em>Include the assessment currently on the Assessment tab</em> to put your current scores last in the sequence. Untick it to compare saved files only.</li>
+        <li><strong>Read the results.</strong> Assessments are ordered by date. You get the overall trend, each category side by side with the change from first to last, a radar chart with every assessment overlaid, the four critical capabilities over time, and the capabilities that improved or declined.</li>
+        <li><strong>Save the comparison.</strong> Select <em>Download comparison (XLSX)</em> for a workbook with the tables and the overlaid radar chart.</li>
+      </ol>
+      <p class="hint">The comparison uses only the capabilities scored in both the first and the last assessment when it counts improvements and declines. Change in a category is shown even if different capabilities were scored, so check the &ldquo;Scored&rdquo; column in the first table when a score looks surprising. The critical-gap flag uses the threshold on the Results tab.</p>
+    </div>
+    <div class="card">
       <h2>About the evidence</h2>
       <p>Each capability carries an evidence level. <strong>Survey-tested</strong> means the practice was tested in a McKinsey Global Survey and linked to higher performers. <strong>Framework-supported</strong> means a published framework or commentary supports it. <strong>Proposed</strong> means it is the author&rsquo;s judgement with no direct source. Open <em>Source and evidence</em> under any capability to see the basis.</p>
       <p>The level descriptors, critical flags, thresholds and journey-map phases are the author&rsquo;s draft judgement and have no published source.</p>
@@ -153,6 +225,7 @@
 </footer>
 
 <script src="lib/xlsx.full.min.js"></script>
+<script src="lib/exceljs.min.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

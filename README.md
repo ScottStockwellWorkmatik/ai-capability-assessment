@@ -14,7 +14,8 @@ favicon files         favicon.ico, favicon.svg, favicon-96x96.png, apple-touch-i
 assets/               logo-black.svg (used in the header), logo-white.svg (spare)
 css/styles.css        Styling
 js/app.js             The app
-lib/xlsx.full.min.js  SheetJS, reads and writes the XLSX files in the browser
+lib/xlsx.full.min.js  SheetJS, reads the XLSX files in the browser
+lib/exceljs.min.js    ExcelJS, writes the XLSX downloads with the radar chart image
 data/framework.json   Categories, capabilities, questions, evidence, level descriptors, thresholds
 ```
 
@@ -26,6 +27,10 @@ data/framework.json   Categories, capabilities, questions, evidence, level descr
 - Critical capabilities S1, S3, S4 and W2 are flagged at or below the critical-gap threshold (default 2).
 - Uneven profile is flagged when the strongest and weakest category differ by the threshold or more (default 1.5).
 - Both thresholds, the critical flags, the level descriptors and the journey-map phases used in "Where to start" are the author's draft judgement and have no published source.
+
+## Compare over time
+
+The Compare tab reads earlier XLSX downloads (up to six) and, optionally, the assessment on the page. It orders them by the date in each file's Summary sheet and shows the overall trend, each category side by side with the change from first to last, an overlaid radar chart, the four critical capabilities over time, and the capabilities that improved or declined. "Download comparison (XLSX)" saves the tables and the overlaid radar chart. Files with no date are shown in the order loaded.
 
 ## Changing the content
 
