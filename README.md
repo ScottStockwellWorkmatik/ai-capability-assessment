@@ -2,7 +2,7 @@
 
 A browser-only assessment of how ready a marketing function is for AI. One assessor scores 35 capabilities across seven categories on a five-level scale, sees results on screen and downloads them as XLSX. Nothing is sent to a server or stored. Workmatik brand.
 
-Live address (after GitHub Pages is switched on): https://scottstockwellworkmatik.github.io/marketing-ai-capability-assessment/
+Live address (after GitHub Pages is switched on): https://scottstockwellworkmatik.github.io/ai-capability-assessment/
 
 ## Files and folders
 
