@@ -238,3 +238,7 @@ td.chg.down-bad, .ph.down-bad { color: #B42318; }
 .lvl { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
 .lvl b { min-height: 0; }
 .lvl span { text-align: left; }
+
+/* Level bullets: dot sits on the title's baseline, so it lines up with the capitals in any font */
+.lvl b, .guide-level b { display: block; position: static; padding-left: 16px; text-indent: -16px; line-height: 1.3; min-height: 0; }
+.lvl b .dot, .guide-level b .dot { display: inline-block; position: static; width: 10px; height: 10px; margin: 0 6px 0 0; text-indent: 0; vertical-align: calc(0.36em - 5px); }
