@@ -661,6 +661,7 @@
     });
     $('btnGoResults').addEventListener('click', function () { showTab('results'); });
     $('btnDownload').addEventListener('click', download);
+    $('btnDownloadToolkit').addEventListener('click', download);
     $('btnLoad').addEventListener('click', function () { $('fileInput').click(); });
     $('fileInput').addEventListener('change', function (e) { if (e.target.files[0]) loadFile(e.target.files[0]); e.target.value = ''; });
     $('btnWfLink').addEventListener('click', function () { $('wfFile').click(); });
