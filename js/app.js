@@ -2,6 +2,7 @@
   'use strict';
   var FW = null;
   var state = { scores: {}, notes: {}, oos: {}, filter: 'all' };
+  var WFL = null; // workflow file linked to this assessment
   var $ = function (id) { return document.getElementById(id); };
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function round1(n) { return Math.round(n * 10) / 10; }
@@ -246,6 +247,87 @@
     });
   }
 
+  // ---------- link to an AI Workflow Assessment file
+  var WF_RULES = [
+    ['W1', 'Repeatability scored 2 or below'],
+    ['D2', 'Data and content readiness scored 2 or below'],
+    ['D4', 'Tool and integration readiness scored 2 or below'],
+    ['G1', 'Risk is high (error consequence or data sensitivity 4 or above) or the EU AI Act tier is limited or high'],
+    ['G4', 'Risk is high (error consequence or data sensitivity 4 or above) or the EU AI Act tier is limited or high'],
+    ['W3', 'Consequence of an error scored 3 or above']
+  ];
+  function wfCapsFor(sc, tier) {
+    var out = [];
+    if (sc.F1 <= 2) out.push(['W1', WF_RULES[0][1]]);
+    if (sc.F2 <= 2) out.push(['D2', WF_RULES[1][1]]);
+    if (sc.F3 <= 2) out.push(['D4', WF_RULES[2][1]]);
+    if (sc.R1 >= 4 || sc.R2 >= 4 || tier === 'limited' || tier === 'high') { out.push(['G1', WF_RULES[3][1]]); out.push(['G4', WF_RULES[4][1]]); }
+    if (sc.R1 >= 3) out.push(['W3', WF_RULES[5][1]]);
+    return out;
+  }
+  function normWfId(id) { id = String(id || '').trim(); var m = /^W(\d{2})$/.exec(id); return m ? 'WF' + m[1] : id; }
+  var QUAD_NAMES = { start: 'Start here', prepare: 'Prepare first', quick: 'Quick win', park: 'Park', prohibited: 'Do not proceed' };
+  function parseWorkflowFile(buf, fname) {
+    var wb = XLSX.read(buf, { type: 'array' }), ws = wb.Sheets['Scoring']; if (!ws) throw new Error('no scoring');
+    var first = XLSX.utils.sheet_to_json(ws, { defval: '' })[0]; if (!first || !('V1' in first) || !('F1' in first) || !('R1' in first)) throw new Error('not a workflow file');
+    var tv = 3, tf = 3, org = '', date = '';
+    if (wb.Sheets['Summary']) XLSX.utils.sheet_to_json(wb.Sheets['Summary'], { header: 1, defval: '' }).forEach(function (r) {
+      if (r[0] === 'Value is high above' && r[1]) tv = parseFloat(r[1]) || tv;
+      if (r[0] === 'Feasibility is high above' && r[1]) tf = parseFloat(r[1]) || tf;
+      if (r[0] === 'Organisation or function') org = String(r[1] || '');
+      if (r[0] === 'Assessment date') date = serialToIso(r[1]);
+    });
+    var rows = [];
+    XLSX.utils.sheet_to_json(ws, { defval: '' }).forEach(function (row) {
+      if (String(row['Included']).toUpperCase() === 'N') return;
+      var sc = {}, got = 0; ['V1', 'V2', 'F1', 'F2', 'F3', 'R1', 'R2'].forEach(function (k) { var n = parseInt(row[k], 10); if (n >= 1 && n <= 5) { sc[k] = n; got++; } });
+      if (got !== 7) return;
+      var tier = String(row['EU AI Act tier'] || 'minimal').trim();
+      var v = (sc.V1 + sc.V2) / 2, f = (sc.F1 + sc.F2 + sc.F3) / 3, r = (sc.R1 + sc.R2) / 2;
+      var quad = tier === 'prohibited' ? 'prohibited' : (v > tv && f > tf) ? 'start' : (v > tv) ? 'prepare' : (f > tf) ? 'quick' : 'park';
+      rows.push({ id: normWfId(row['ID']), name: String(row['Workflow'] || ''), priority: Math.round(v * f / 25 * 100 * (1 - 0.1 * (r - 1))), quad: quad, tier: tier, caps: wfCapsFor(sc, tier) });
+    });
+    return { file: fname, org: org, date: date, rows: rows };
+  }
+  function wfLinks() {
+    var m = {};
+    if (!WFL) return m;
+    WFL.rows.forEach(function (w) { w.caps.forEach(function (c) { (m[c[0]] = m[c[0]] || []).push({ wf: w, why: c[1] }); }); });
+    Object.keys(m).forEach(function (k) { m[k].sort(function (a, b) { return b.wf.priority - a.wf.priority; }); });
+    return m;
+  }
+  function renderWfLink() {
+    var host = $('wfLinkBody'); if (!host) return; host.textContent = '';
+    $('wfLinkClear').hidden = !WFL;
+    if (!WFL) { host.appendChild(el('p', 'hint', 'No workflow file loaded.')); return; }
+    var links = wfLinks(), ids = Object.keys(links);
+    host.appendChild(el('p', 'hint', 'From ' + WFL.file + (WFL.org ? ' (' + WFL.org + ')' : '') + ': ' + WFL.rows.length + ' fully scored workflow' + (WFL.rows.length === 1 ? '' : 's') + ', ' + WFL.rows.filter(function (w) { return w.quad === 'start'; }).length + ' in the Start here group.'));
+    if (!ids.length) { host.appendChild(el('p', null, 'Your workflow scores flag no capability gaps.')); return; }
+    ids.sort(function (a, b) { return links[b].length - links[a].length; });
+    var wrap = el('div', 'table-scroll'), t = el('table', 'rank-table'), hr = el('tr');
+    ['Capability', 'Flagged by', 'Top workflows', 'Your score'].forEach(function (h) { hr.appendChild(el('th', null, h)); });
+    var th = el('thead'); th.appendChild(hr); t.appendChild(th); var tb = el('tbody');
+    ids.forEach(function (id) {
+      var c = capById(id); if (!c) return; var l = links[id], tr = el('tr');
+      tr.appendChild(el('td', null, c.id + ' ' + c.name));
+      tr.appendChild(el('td', 'num', l.length + ' workflow' + (l.length === 1 ? '' : 's')));
+      tr.appendChild(el('td', null, l.slice(0, 3).map(function (x) { return x.wf.name + ' (' + (QUAD_NAMES[x.wf.quad] || '') + ')'; }).join('; ') + (l.length > 3 ? '; and ' + (l.length - 3) + ' more' : '')));
+      var sc = state.scores[id], oos = state.oos[id];
+      tr.appendChild(el('td', null, oos ? 'Out of scope' : sc >= 1 ? sc + ' ' + levelName(sc) + (sc <= 2 ? ' (gap)' : '') : 'Not scored yet'));
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb); wrap.appendChild(t); host.appendChild(wrap);
+    host.appendChild(el('p', 'hint', 'The links are rules, not findings: for example a workflow scored 2 or below on repeatability points to W1. They are the author’s judgement, and match the capability hints in the AI Workflow Assessment.'));
+  }
+  function loadWorkflowFile(file) {
+    var msgs = $('loadMessages'); msgs.textContent = '';
+    readFileBuffer(file).then(function (buf) {
+      try { WFL = parseWorkflowFile(buf, file.name); } catch (e) { msgs.appendChild(el('li', 'bad', 'That file could not be read as an AI Workflow Assessment file.')); return; }
+      if (!WFL.rows.length) { msgs.appendChild(el('li', 'bad', 'That file has no fully scored workflows, so there is nothing to link.')); WFL = null; }
+      renderWfLink();
+    }).catch(function () { msgs.appendChild(el('li', 'bad', 'That file could not be read.')); });
+  }
+
   // ---------- xlsx
   function download() {
     var r = calc();
@@ -271,7 +353,12 @@
     r.crit.forEach(function (c) { res.push([c.cap.id + ' ' + c.cap.name, c.score >= 1 ? c.score : '', c.status]); });
     var org = ($('orgName').value || 'results').replace(/[^A-Za-z0-9_-]+/g, '_').slice(0, 40);
     var fname = 'AI_Capability_Assessment_' + org + '.xlsx';
-    var sheets = [['Summary', meta, [30, 60]], ['Scoring', scoring, [6, 30, 48, 60, 8, 11, 20, 12, 50]], ['Results', res, [48, 14, 10, 10]]];
+    var sheets = [['Summary', meta, [30, 60]], ['Workmatik data', [['Field', 'Value'], ['Tool', 'Workmatik AI Capability Assessment'], ['Tool key', 'capability'], ['Data version', FW.version], ['Schema', 'workmatik-shared-ids-1'], ['Organisation', $('orgName').value], ['Assessor', $('auditor').value], ['Assessment date', $('auditDate').value], ['Capabilities scored', r.scoredN], ['Workflow file linked', WFL ? WFL.file : ''], ['Note', 'Capability IDs (such as W1, D2, G1) are stable. Other Workmatik tools match on these IDs.']], [26, 90]], ['Scoring', scoring, [6, 30, 48, 60, 8, 11, 20, 12, 50]], ['Results', res, [48, 14, 10, 10]]];
+    if (WFL) {
+      var wl = [['Capability ID', 'Capability', 'Workflow ID', 'Workflow', 'Priority index', 'Group', 'Why it is flagged', 'Your score']], lk = wfLinks();
+      Object.keys(lk).forEach(function (id) { var c = capById(id); if (!c) return; lk[id].forEach(function (x) { wl.push([id, c.name, x.wf.id, x.wf.name, x.wf.priority, QUAD_NAMES[x.wf.quad] || '', x.why, state.scores[id] >= 1 ? state.scores[id] : '']); }); });
+      sheets.push(['Workflow links', wl, [12, 36, 11, 40, 13, 16, 60, 11]]);
+    }
     function fallback() {
       var wb = XLSX.utils.book_new();
       sheets.forEach(function (sh) { var ws = XLSX.utils.aoa_to_sheet(sh[1]); ws['!cols'] = sh[2].map(function (w) { return { wch: w }; }); XLSX.utils.book_append_sheet(wb, ws, sh[0]); });
@@ -288,6 +375,7 @@
         ws.eachRow(function (row) { row.alignment = { vertical: 'top', wrapText: true }; });
       });
       sheetObjs.Summary.getRow(1).font = { bold: true, size: 14 };
+      ['Workmatik data', 'Workflow links'].forEach(function (n) { var w = sheetObjs[n]; if (!w) return; w.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } }; w.getRow(1).eachCell(function (c) { c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF024873' } }; }); });
       sheetObjs.Scoring.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
       sheetObjs.Scoring.getRow(1).eachCell(function (c) { c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF024873' } }; });
       var rs = sheetObjs.Results; rs.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } };
@@ -575,9 +663,13 @@
     $('btnDownload').addEventListener('click', download);
     $('btnLoad').addEventListener('click', function () { $('fileInput').click(); });
     $('fileInput').addEventListener('change', function (e) { if (e.target.files[0]) loadFile(e.target.files[0]); e.target.value = ''; });
+    $('btnWfLink').addEventListener('click', function () { $('wfFile').click(); });
+    $('wfFile').addEventListener('change', function (e) { if (e.target.files[0]) loadWorkflowFile(e.target.files[0]); e.target.value = ''; });
+    $('wfLinkClear').addEventListener('click', function () { WFL = null; renderWfLink(); });
+    renderWfLink();
     $('btnReset').addEventListener('click', function () {
       if (!window.confirm('Clear all scores, notes and out-of-scope marks?')) return;
-      state.scores = {}; state.notes = {}; state.oos = {}; $('loadMessages').textContent = ''; refreshAllCaps();
+      state.scores = {}; state.notes = {}; state.oos = {}; WFL = null; renderWfLink(); $('loadMessages').textContent = ''; refreshAllCaps();
     });
     ['thrCritical', 'thrUneven'].forEach(function (id) { $(id).addEventListener('input', renderResults); });
     $('btnCmpAdd').addEventListener('click', function () { $('cmpFiles').click(); });

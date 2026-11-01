@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="AI Capability">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="css/styles.css?v=2">
+<link rel="stylesheet" href="css/styles.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -76,6 +76,17 @@
       <button class="btn" id="btnReset">Reset assessment</button>
     </div>
     <ul id="loadMessages" class="messages" aria-live="polite"></ul>
+
+    <div class="card" id="wfLink">
+      <h2>Link to your AI Workflow Assessment</h2>
+      <p class="hint">Load the Excel file you downloaded from the AI Workflow Assessment. This page then shows which capabilities your scored workflows depend on, and how you scored them here. The file is read in your browser and is not uploaded.</p>
+      <div class="actions" style="margin-top:8px">
+        <button class="btn" id="btnWfLink" type="button">Load a workflow file (XLSX)</button>
+        <input id="wfFile" type="file" accept=".xlsx" hidden>
+        <button class="btn small" id="wfLinkClear" type="button" hidden>Remove workflow file</button>
+      </div>
+      <div id="wfLinkBody"></div>
+    </div>
   </section>
 
   <!-- Results -->
@@ -212,6 +223,10 @@
       <p>The level descriptors, critical flags, thresholds and journey-map phases are the author&rsquo;s draft judgement and have no published source.</p>
     </div>
     <div class="card">
+      <h2>Link to your workflows</h2>
+      <p>If you have scored workflows in the AI Workflow Assessment, load its Excel file at the bottom of the Assessment tab. The page lists the capabilities those workflows depend on, which workflows flag them, and how you scored them here. The download then includes a Workflow links sheet. The links follow simple rules (for example low repeatability points to W1) and are the author&rsquo;s judgement.</p>
+    </div>
+    <div class="card">
       <h2>About your data</h2>
       <p>This page has no server, no account and no tracking. Scores exist only in this browser tab and are lost when you close or refresh it, unless you download the XLSX. Loaded files are read locally and never uploaded.</p>
     </div>
@@ -226,6 +241,6 @@
 
 <script src="lib/xlsx.full.min.js"></script>
 <script src="lib/exceljs.min.js"></script>
-<script src="js/app.js"></script>
+<script src="js/app.js?v=2"></script>
 </body>
 </html>

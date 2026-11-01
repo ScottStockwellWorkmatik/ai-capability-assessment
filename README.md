@@ -39,3 +39,6 @@ Edit `data/framework.json`. The capabilities are listed in order inside `capabil
 ## Saved files
 
 The XLSX download has Summary, Scoring and Results sheets. The Assessment tab can load a downloaded file back (it reads the Scoring and Summary sheets), so keep the column headings as they are.
+
+## Link to the AI Workflow Assessment
+Load a file downloaded from the AI Workflow Assessment (Assessment tab) to see which capabilities your scored workflows depend on. The download then includes a "Workflow links" sheet and a "Workmatik data" sheet with the stable capability IDs.
