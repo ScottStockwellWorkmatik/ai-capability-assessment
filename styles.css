@@ -239,6 +239,6 @@ td.chg.down-bad, .ph.down-bad { color: #B42318; }
 .lvl b { min-height: 0; }
 .lvl span { text-align: left; }
 
-/* Level bullets: align the dot with the first line of the title */
-.lvl b, .guide-level b { align-items: flex-start; line-height: 1.3; }
-.lvl b .dot, .guide-level b .dot { margin-top: calc((1.3em - 10px) / 2); }
+/* Level bullets: dot hangs at the left, centred on the first line of the title */
+.lvl b, .guide-level b { display: block; position: relative; padding-left: 16px; line-height: 18px; min-height: 0; }
+.lvl b .dot, .guide-level b .dot { position: absolute; left: 0; top: 4px; margin: 0; }
