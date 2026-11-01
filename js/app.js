@@ -638,7 +638,7 @@
 
   // ---------- tabs and init
   function showTab(name) {
-    ['audit', 'results', 'compare', 'guide'].forEach(function (t) {
+    ['audit', 'results', 'compare', 'guide', 'toolkit'].forEach(function (t) {
       var on = t === name; $('tab-' + t).setAttribute('aria-selected', on ? 'true' : 'false'); $('tab-' + t).tabIndex = on ? 0 : -1; $('panel-' + t).hidden = !on;
     });
     if (name === 'results') renderResults();
@@ -651,7 +651,7 @@
     $('auditDate').value = new Date().toISOString().slice(0, 10);
     $('thrCritical').value = FW.thresholds.critical; $('thrUneven').value = FW.thresholds.uneven;
     renderChips(); buildCaps(); renderGuide(); refreshAllCaps();
-    var tabs = ['audit', 'results', 'compare', 'guide'];
+    var tabs = ['audit', 'results', 'compare', 'guide', 'toolkit'];
     tabs.forEach(function (t, i) {
       $('tab-' + t).addEventListener('click', function () { showTab(t); });
       $('tab-' + t).addEventListener('keydown', function (e) {
