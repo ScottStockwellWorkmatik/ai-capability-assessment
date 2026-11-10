@@ -22,6 +22,7 @@
 <meta name="apple-mobile-web-app-title" content="AI Capability">
 <link rel="manifest" href="site.webmanifest">
 <link rel="stylesheet" href="css/styles.css?v=3">
+<link rel="stylesheet" href="css/workmatik-shared.css?v=1">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -36,6 +37,7 @@
     <p class="privacy-chip" title="No data is sent to a server or stored by this page">Runs in your browser. Nothing is uploaded or stored.</p>
   </div>
 </header>
+<div id="orgBlock"></div>
 
 <main id="main" class="wrap">
   <p id="loadError" class="error" role="alert" hidden></p>
@@ -55,9 +57,7 @@
     </div>
 
     <form class="meta-form" id="metaForm" onsubmit="return false">
-      <label>Organisation or function
-        <input id="orgName" type="text" maxlength="80" autocomplete="off" placeholder="e.g. Acme EMEA Marketing">
-      </label>
+      <input type="hidden" id="orgName">
       <label>Assessor
         <input id="auditor" type="text" maxlength="60" autocomplete="off" placeholder="e.g. initials or name">
       </label>
@@ -257,6 +257,7 @@
 
 <script src="lib/xlsx.full.min.js"></script>
 <script src="lib/exceljs.min.js"></script>
-<script src="js/app.js?v=4"></script>
+<script src="js/workmatik-shared.js?v=1"></script>
+<script src="js/app.js?v=5"></script>
 </body>
 </html>

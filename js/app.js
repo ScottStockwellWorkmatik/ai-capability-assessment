@@ -330,10 +330,11 @@
 
   // ---------- xlsx
   function download() {
+    if (!Workmatik.requireOrg()) return;
     var r = calc();
     var meta = [
       ['AI Capability Assessment'], ['Framework version', FW.version],
-      ['Organisation or function', $('orgName').value], ['Assessor', $('auditor').value], ['Assessment date', $('auditDate').value],
+      ['Organisation or function', $('orgName').value], ['Business unit', Workmatik.get().unit], ['Assessor', $('auditor').value], ['Assessment date', $('auditDate').value],
       ['Critical-gap threshold', r.thrC], ['Uneven-profile threshold', r.thrU], [],
       ['Overall score', r.overall == null ? '' : round1(r.overall)],
       ['Overall level', r.overall == null ? '' : levelName(Math.max(1, Math.min(5, Math.round(r.overall))))],
@@ -351,9 +352,8 @@
     r.cats.forEach(function (c) { res.push([c.name, c.avg == null ? '' : round1(c.avg), c.scored, c.inScope]); });
     res.push([]); res.push(['Critical capability', 'Score', 'Status']);
     r.crit.forEach(function (c) { res.push([c.cap.id + ' ' + c.cap.name, c.score >= 1 ? c.score : '', c.status]); });
-    var org = ($('orgName').value || 'results').replace(/[^A-Za-z0-9_-]+/g, '_').slice(0, 40);
-    var fname = 'AI_Capability_Assessment_' + org + '.xlsx';
-    var sheets = [['Summary', meta, [30, 60]], ['Workmatik data', [['Field', 'Value'], ['Tool', 'Workmatik AI Capability Assessment'], ['Tool key', 'capability'], ['Data version', FW.version], ['Schema', 'workmatik-shared-ids-1'], ['Organisation', $('orgName').value], ['Assessor', $('auditor').value], ['Assessment date', $('auditDate').value], ['Capabilities scored', r.scoredN], ['Workflow file linked', WFL ? WFL.file : ''], ['Note', 'Capability IDs (such as W1, D2, G1) are stable. Other Workmatik tools match on these IDs.']], [26, 90]], ['Scoring', scoring, [6, 30, 48, 60, 8, 11, 20, 12, 50]], ['Results', res, [48, 14, 10, 10]]];
+    var fname = Workmatik.fileName('capability');
+    var sheets = [['Summary', meta, [30, 60]], ['Workmatik data', Workmatik.metaRows('Workmatik AI Capability Assessment', 'capability', FW.version, [['Assessor', $('auditor').value], ['Assessment date', $('auditDate').value], ['Capabilities scored', r.scoredN], ['Workflow file linked', WFL ? WFL.file : ''], ['Note', 'Capability IDs (such as W1, D2, G1) are stable. Other Workmatik tools match on these IDs.']]), [26, 90]], ['Scoring', scoring, [6, 30, 48, 60, 8, 11, 20, 12, 50]], ['Results', res, [48, 14, 10, 10]]];
     if (WFL) {
       var wl = [['Capability ID', 'Capability', 'Workflow ID', 'Workflow', 'Priority index', 'Group', 'Why it is flagged', 'Your score']], lk = wfLinks();
       Object.keys(lk).forEach(function (id) { var c = capById(id); if (!c) return; lk[id].forEach(function (x) { wl.push([id, c.name, x.wf.id, x.wf.name, x.wf.priority, QUAD_NAMES[x.wf.quad] || '', x.why, state.scores[id] >= 1 ? state.scores[id] : '']); }); });
@@ -402,7 +402,8 @@
   function parseWorkbook(buf) {
     var wb = XLSX.read(buf, { type: 'array' });
     var ws = wb.Sheets['Scoring']; if (!ws) throw new Error('no scoring sheet');
-    var out = { scores: {}, notes: {}, oos: {}, n: 0, org: '', assessor: '', date: '', thrC: null, thrU: null };
+    var out = { scores: {}, notes: {}, oos: {}, n: 0, org: '', assessor: '', date: '', thrC: null, thrU: null, kv: {} };
+    if (wb.Sheets['Workmatik data']) XLSX.utils.sheet_to_json(wb.Sheets['Workmatik data'], { header: 1 }).forEach(function (r) { if (r[0]) out.kv[String(r[0])] = r[1]; });
     XLSX.utils.sheet_to_json(ws, { defval: '' }).forEach(function (row) {
       var id = String(row['ID'] || '').trim(); if (!capById(id)) return;
       var sc = parseInt(row['Score (1-5)'], 10); if (sc >= 1 && sc <= 5) { out.scores[id] = sc; out.n++; }
@@ -429,8 +430,12 @@
     readFileBuffer(file).then(function (buf) {
       var d;
       try { d = parseWorkbook(buf); } catch (e) { msg('This file has no Scoring sheet, or could not be read as an assessment file, so it was not loaded.', false); return; }
+      if (!d.kv['Organisation']) d.kv['Organisation'] = d.org;
+      var chk = Workmatik.check(d.kv);
+      if (!chk.ok && !window.confirm(chk.message + ' Load it anyway? The page will switch to the file\'s organisation.')) { msg('Not loaded: the file is for a different organisation or business unit.', false); return; }
+      Workmatik.set({ org: d.kv['Organisation'] || d.org || '', unit: d.kv['Business unit'] || '' });
       state.scores = d.scores; state.notes = d.notes; state.oos = d.oos;
-      $('orgName').value = d.org; $('auditor').value = d.assessor; $('auditDate').value = d.date;
+      $('auditor').value = d.assessor; $('auditDate').value = d.date;
       if (d.thrC) $('thrCritical').value = d.thrC; if (d.thrU) $('thrUneven').value = d.thrU;
       refreshAllCaps(); msg('Loaded ' + d.n + ' scores from ' + file.name + '.', true);
     }).catch(function () { msg('That file could not be read as an assessment file.', false); });
@@ -446,7 +451,7 @@
     var list = cmp.snaps.slice();
     if (cmp.includeCurrent) {
       var any = Object.keys(state.scores).some(function (k) { return state.scores[k] >= 1; });
-      if (any) list.push({ name: 'Current assessment', current: true, org: $('orgName').value, assessor: $('auditor').value, date: $('auditDate').value, scores: state.scores, oos: state.oos });
+      if (any) list.push({ name: 'Current assessment', current: true, org: Workmatik.get().org, assessor: $('auditor').value, date: $('auditDate').value, scores: state.scores, oos: state.oos });
     }
     // sort by date (undated keep their order); the current assessment goes last when dates tie
     var idx = list.map(function (x, i) { return i; });
@@ -609,7 +614,7 @@
       var a = first.oos[c.id] ? null : first.scores[c.id], z = last.oos[c.id] ? null : last.scores[c.id];
       capRows.push([c.id, FW.categories[c.cat], c.name, c.critical ? 'Y' : ''].concat(vals).concat(multi ? [(a >= 1 && z >= 1) ? z - a : ''] : []));
     });
-    var fname = 'AI_Capability_Assessment_Comparison.xlsx';
+    var fname = Workmatik.fileName('capability-comparison');
     function fallback() {
       var wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(rows), 'Comparison'); XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(capRows), 'Capabilities'); XLSX.writeFile(wb, fname);
@@ -648,6 +653,8 @@
 
   function init() {
     $('fwVersion').textContent = FW.version;
+    Workmatik.renderOrgBlock($('orgBlock'));
+    Workmatik.onChange(function (c) { $('orgName').value = c.org; }); $('orgName').value = Workmatik.get().org;
     $('auditDate').value = new Date().toISOString().slice(0, 10);
     $('thrCritical').value = FW.thresholds.critical; $('thrUneven').value = FW.thresholds.uneven;
     renderChips(); buildCaps(); renderGuide(); refreshAllCaps();
