@@ -320,8 +320,8 @@
     host.appendChild(el('p', 'hint', 'The links are rules, not findings: for example a workflow scored 2 or below on repeatability points to W1. They are the author’s judgement, and match the capability hints in the AI Workflow Assessment.'));
   }
   function loadWorkflowFile(file) {
-    var msgs = $('loadMessages'); msgs.textContent = '';
-    readFileBuffer(file).then(function (buf) {
+    var msgs = $('loadMessages'); if (!dropBatch) msgs.textContent = '';
+    return readFileBuffer(file).then(function (buf) {
       try { WFL = parseWorkflowFile(buf, file.name); } catch (e) { msgs.appendChild(el('li', 'bad', 'That file could not be read as an AI Workflow Assessment file.')); return; }
       if (!WFL.rows.length) { msgs.appendChild(el('li', 'bad', 'That file has no fully scored workflows, so there is nothing to link.')); WFL = null; }
       renderWfLink();
@@ -420,14 +420,15 @@
     });
     return out;
   }
+  var dropBatch = false;
   function readFileBuffer(file) {
     return new Promise(function (resolve, reject) { var rd = new FileReader(); rd.onload = function () { resolve(rd.result); }; rd.onerror = reject; rd.readAsArrayBuffer(file); });
   }
 
   function loadFile(file) {
-    var msgs = $('loadMessages'); msgs.textContent = '';
+    var msgs = $('loadMessages'); if (!dropBatch) msgs.textContent = '';
     function msg(t, ok) { msgs.appendChild(el('li', ok ? 'ok' : 'bad', t)); }
-    readFileBuffer(file).then(function (buf) {
+    return readFileBuffer(file).then(function (buf) {
       var d;
       try { d = parseWorkbook(buf); } catch (e) { msg('This file has no Scoring sheet, or could not be read as an assessment file, so it was not loaded.', false); return; }
       if (!d.kv['Organisation']) d.kv['Organisation'] = d.org;
@@ -671,6 +672,20 @@
     $('btnDownloadToolkit').addEventListener('click', download);
     $('btnLoad').addEventListener('click', function () { $('fileInput').click(); });
     $('fileInput').addEventListener('change', function (e) { if (e.target.files[0]) loadFile(e.target.files[0]); e.target.value = ''; });
+    Workmatik.enableDrop(function (files) {
+      var msgs = $('loadMessages'); msgs.textContent = ''; dropBatch = true;
+      Workmatik.identifyAll(files, ['capability', 'scoring', 'workflow']).then(function (items) {
+        var chain = Promise.resolve();
+        items.forEach(function (it) {
+          chain = chain.then(function () {
+            if (it.tool === 'capability' || it.tool === 'scoring') return loadFile(it.file);
+            if (it.tool === 'workflow') return loadWorkflowFile(it.file);
+            msgs.appendChild(el('li', 'bad', it.file.name + ' was not recognised. Drop a saved Capability Assessment or an AI Workflow Assessment file.'));
+          });
+        });
+        chain.then(function () { dropBatch = false; }, function () { dropBatch = false; });
+      });
+    }, { label: 'Drop a saved assessment or your Workflow file' });
     $('btnWfLink').addEventListener('click', function () { $('wfFile').click(); });
     $('wfFile').addEventListener('change', function (e) { if (e.target.files[0]) loadWorkflowFile(e.target.files[0]); e.target.value = ''; });
     $('wfLinkClear').addEventListener('click', function () { WFL = null; renderWfLink(); });
