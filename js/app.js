@@ -433,12 +433,14 @@
       try { d = parseWorkbook(buf); } catch (e) { msg('This file has no Scoring sheet, or could not be read as an assessment file, so it was not loaded.', false); return; }
       if (!d.kv['Organisation']) d.kv['Organisation'] = d.org;
       var chk = Workmatik.check(d.kv);
-      if (!chk.ok && !window.confirm(chk.message + ' Load it anyway? The page will switch to the file\'s organisation.')) { msg('Not loaded: the file is for a different organisation or business unit.', false); return; }
-      Workmatik.set({ org: d.kv['Organisation'] || d.org || '', unit: d.kv['Business unit'] || '' });
-      state.scores = d.scores; state.notes = d.notes; state.oos = d.oos;
-      $('auditor').value = d.assessor; $('auditDate').value = d.date;
-      if (d.thrC) $('thrCritical').value = d.thrC; if (d.thrU) $('thrUneven').value = d.thrU;
-      refreshAllCaps(); msg('Loaded ' + d.n + ' scores from ' + file.name + '.', true);
+      return Workmatik.confirmLoad(chk, 'The page will switch to the file\'s organisation.').then(function (go) {
+        if (!go) { msg('Not loaded: the file is for a different organisation or business unit.', false); return; }
+        Workmatik.set({ org: d.kv['Organisation'] || d.org || '', unit: d.kv['Business unit'] || '' });
+        state.scores = d.scores; state.notes = d.notes; state.oos = d.oos;
+        $('auditor').value = d.assessor; $('auditDate').value = d.date;
+        if (d.thrC) $('thrCritical').value = d.thrC; if (d.thrU) $('thrUneven').value = d.thrU;
+        refreshAllCaps(); msg('Loaded ' + d.n + ' scores from ' + file.name + '.', true);
+      });
     }).catch(function () { msg('That file could not be read as an assessment file.', false); });
   }
 
@@ -691,8 +693,10 @@
     $('wfLinkClear').addEventListener('click', function () { WFL = null; renderWfLink(); });
     renderWfLink();
     $('btnReset').addEventListener('click', function () {
-      if (!window.confirm('Clear all scores, notes and out-of-scope marks?')) return;
-      state.scores = {}; state.notes = {}; state.oos = {}; WFL = null; renderWfLink(); $('loadMessages').textContent = ''; refreshAllCaps();
+      Workmatik.confirm('Clear all scores, notes and out-of-scope marks?', { title: 'Clear everything?', ok: 'Clear everything', danger: true }).then(function (ok) {
+        if (!ok) return;
+        state.scores = {}; state.notes = {}; state.oos = {}; WFL = null; renderWfLink(); $('loadMessages').textContent = ''; refreshAllCaps();
+      });
     });
     ['thrCritical', 'thrUneven'].forEach(function (id) { $(id).addEventListener('input', renderResults); });
     $('btnCmpAdd').addEventListener('click', function () { $('cmpFiles').click(); });
